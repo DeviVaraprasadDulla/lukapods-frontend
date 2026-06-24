@@ -1,0 +1,68 @@
+@import "./variables.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================
+   GLOBAL RESET
+========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  min-width: 320px;
+
+  background: linear-gradient(180deg, #f8fbff 0%, #edf4fb 100%);
+
+  color: var(--color-text-primary);
+
+  font-family: Inter, system-ui, sans-serif;
+
+  overflow-x: hidden;
+
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================
+   ELEMENTS
+========================= */
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #edf4fb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
