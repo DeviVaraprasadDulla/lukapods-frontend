@@ -12,8 +12,15 @@ const Highlights = () => {
       {/* CONTAINER ALIGNMENT */}
       <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
         {/* STRIP 1 */}
-        <div className="rotate-[-1deg] bg-orange-500 py-1.5 rounded-md overflow-hidden">
-          <motion.div
+{/* STRIP 1 */}
+            <div
+              className="rotate-[-1deg] py-1.5 rounded-md overflow-hidden shadow-lg"
+              style={{
+                background:
+                  "linear-gradient(135deg, #1D4ED8 0%, #2563EB 40%, #38BDF8 100%)",
+              }}
+            >          
+            <motion.div
             className="flex gap-10 text-white text-sm font-medium whitespace-nowrap"
             animate={{ x: ["0%", "-50%"] }}
             transition={{
@@ -29,7 +36,14 @@ const Highlights = () => {
         </div>
 
         {/* STRIP 2 */}
-        <div className="rotate-[1deg] bg-gray-900 py-1.5 rounded-md mt-2 overflow-hidden">
+        {/* STRIP 2 */}
+            <div
+              className="rotate-[1deg] mt-2 py-1.5 rounded-md overflow-hidden shadow-lg"
+              style={{
+                background:
+                  "linear-gradient(135deg, #0F172A 0%, #1E40AF 55%, #2563EB 100%)",
+              }}
+            >
           <motion.div
             className="flex gap-10 text-white text-sm font-medium whitespace-nowrap"
             animate={{ x: ["-50%", "0%"] }}

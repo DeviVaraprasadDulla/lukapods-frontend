@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "@/context/AuthContext";
 import {
   getCheckoutSummary,
   getAddresses,
@@ -10,7 +10,7 @@ import {
 
 const Checkout = () => {
   const navigate = useNavigate();
-
+  const { isAuthenticated } = useAuth();
   const [loading, setLoading] = useState(true);
   const [placingOrder, setPlacingOrder] = useState(false);
 
@@ -62,9 +62,17 @@ const Checkout = () => {
     }
   };
 
-  useEffect(() => {
-    loadCheckout();
-  }, []);
+useEffect(() => {
+  if (!isAuthenticated) {
+    navigate("/login", {
+      state: { from: "/checkout" },
+      replace: true,
+    });
+    return;
+  }
+
+  loadCheckout();
+}, [isAuthenticated]);
 
   /*
   |--------------------------------------------------------------------------
@@ -116,25 +124,36 @@ const Checkout = () => {
   |--------------------------------------------------------------------------
   */
 
-  const handlePlaceOrder = async () => {
-    if (!selectedAddress) {
-      alert("Please select an address");
-      return;
-    }
+  // const handlePlaceOrder = async () => {
+  //   if (!selectedAddress) {
+  //     alert("Please select an address");
+  //     return;
+  //   }
 
-    try {
-      setPlacingOrder(true);
+  //   try {
+  //     setPlacingOrder(true);
 
-      const response = await createOrder(selectedAddress);
+  //     const response = await createOrder(selectedAddress);
 
-      navigate(`/order-success/${response.order_token}`);
-    } catch (error) {
-      alert(error?.response?.data?.error || "Failed to create order");
-    } finally {
-      setPlacingOrder(false);
-    }
-  };
+  //     navigate(`/order-success/${response.order_token}`);
+  //   } catch (error) {
+  //     alert(error?.response?.data?.error || "Failed to create order");
+  //   } finally {
+  //     setPlacingOrder(false);
+  //   }
+  // };
+const handlePlaceOrder = () => {
+  if (!selectedAddress) {
+    alert("Please select an address");
+    return;
+  }
 
+  navigate("/payment", {
+    state: {
+      addressId: selectedAddress,
+    },
+  });
+};
   /*
   |--------------------------------------------------------------------------
   | LOADING

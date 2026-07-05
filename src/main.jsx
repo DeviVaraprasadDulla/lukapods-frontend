@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { AuthProvider } from "@/context/AuthContext";
 import "./styles/blog-content.css";
 
 import App from "./App";
@@ -17,10 +18,16 @@ initLenis();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Providers>
-      <CartProvider>
-        <App />
-      </CartProvider>
-    </Providers>
-  </React.StrictMode>,
+    <GoogleOAuthProvider
+      clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}
+    >
+      <AuthProvider>
+      <Providers>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </Providers>
+      </AuthProvider>
+    </GoogleOAuthProvider>
+  </React.StrictMode>
 );

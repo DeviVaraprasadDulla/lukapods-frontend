@@ -6,6 +6,7 @@ import { lukaLogo } from "@/assets";
 import { SITE_CONFIG } from "@/config/theme";
 import { useCart } from "@/context/CartContext";
 import CartDrawer from "@/components/cart/CartDrawer";
+import { User } from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation(); // <-- Get current path for active links
@@ -14,7 +15,7 @@ const Navbar = () => {
   const [hideAnnouncementSpace, setHideAnnouncementSpace] = useState(false);
   const { cartCount } = useCart();
   const [cartOpen, setCartOpen] = useState(false);
-
+const [profileOpen, setProfileOpen] = useState(false);
   //
   // SCROLL EFFECTS
   //
@@ -281,7 +282,26 @@ const Navbar = () => {
                   </span>
                 )}
               </motion.button>
-
+                <Link to="/account">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="
+                      w-12
+                      h-12
+                      rounded-full
+                      bg-white
+                      border
+                      border-slate-200
+                      flex
+                      items-center
+                      justify-center
+                      shadow-[0_10px_25px_rgba(15,23,42,0.06)]
+                    "
+                  >
+                    <User size={20} className="text-slate-700" />
+                  </motion.button>
+                </Link>
               {/* SHOP NOW PRIMARY CTA (Improvement: Routed to /products via clear Link) */}
               <Link to="/products">
                 <motion.button
@@ -386,7 +406,28 @@ const Navbar = () => {
                   </span>
                 )}
               </motion.button>
-
+                {/* User */}
+                <Link to="/account">
+                  <motion.button
+                    whileTap={{ scale: 0.95 }}
+                    className="
+                      flex
+                      items-center
+                      justify-center
+                      w-10
+                      h-10
+                      rounded-full
+                      bg-white/70
+                      border
+                      border-slate-200
+                      text-slate-800
+                      backdrop-blur-xl
+                      shadow-[0_8px_20px_rgba(15,23,42,0.04)]
+                    "
+                  >
+                    <User size={18} className="text-slate-700" />
+                  </motion.button>
+                </Link>
               {/* MOBILE MENU HAMBURGER ACTION CONTROLLER */}
               <button
                 onClick={() => setMobileMenu(!mobileMenu)}

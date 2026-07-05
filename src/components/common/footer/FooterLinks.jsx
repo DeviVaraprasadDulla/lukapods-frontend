@@ -40,8 +40,16 @@ const footerLinks = [
         path: "/contact",
       },
       {
-        label: "Privacy",
-        path: "/privacy",
+        label: "Privacy Policy",
+        path: "/privacy-policy",
+      },
+      {
+        label: "Terms & Conditions",
+        path: "/terms",
+      },
+      {
+        label: "Refund Policy",
+        path: "/refund-policy",
       },
     ],
   },

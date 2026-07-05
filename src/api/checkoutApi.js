@@ -8,54 +8,36 @@ import api from "./axios";
 
 export const getCheckoutSummary = async () => {
   const response = await api.get("/cart/checkout/");
-
   return response.data;
 };
 
-/*
-|--------------------------------------------------------------------------
-| GET ADDRESSES
-|--------------------------------------------------------------------------
-*/
-
+// GET ADDRESSES
 export const getAddresses = async () => {
-  const response = await api.get("/orders/address/");
-
+  const response = await api.get("/orders/addresses/");
   return response.data;
 };
 
-/*
-|--------------------------------------------------------------------------
-| SAVE ADDRESS
-|--------------------------------------------------------------------------
-*/
-
+// SAVE ADDRESS
 export const saveAddress = async (addressData) => {
-  const response = await api.post("/orders/address/save/", addressData);
-
+  const response = await api.post("/orders/save-address/", addressData);
   return response.data;
 };
 
-/*
-|--------------------------------------------------------------------------
-| UPDATE ADDRESS
-|--------------------------------------------------------------------------
-*/
-
+// UPDATE ADDRESS
 export const updateAddress = async (addressId, addressData) => {
-  const response = await api.put(`/orders/address/${addressId}/`, addressData);
+  const response = await api.put(
+    `/orders/addresses/${addressId}/update/`,
+    addressData
+  );
 
   return response.data;
 };
 
-/*
-|--------------------------------------------------------------------------
-| DELETE ADDRESS
-|--------------------------------------------------------------------------
-*/
-
+// DELETE ADDRESS
 export const deleteAddress = async (addressId) => {
-  const response = await api.delete(`/orders/address/${addressId}/`);
+  const response = await api.delete(
+    `/orders/addresses/${addressId}/delete/`
+  );
 
   return response.data;
 };
@@ -81,7 +63,7 @@ export const createOrder = async (addressId) => {
 */
 
 export const markOrderPaid = async (orderToken) => {
-  const response = await api.post("/orders/payment/success/", {
+  const response = await api.post("/orders/mark-paid/", {
     order_token: orderToken,
   });
 
@@ -95,7 +77,7 @@ export const markOrderPaid = async (orderToken) => {
 */
 
 export const getOrderDetails = async (orderToken) => {
-  const response = await api.get(`/orders/${orderToken}/`);
+  const response = await api.get(`/orders/by-token/${orderToken}/`);
 
   return response.data;
 };
@@ -107,7 +89,7 @@ export const getOrderDetails = async (orderToken) => {
 */
 
 export const getMyOrders = async () => {
-  const response = await api.get("/orders/my-orders/");
+  const response = await api.get("/orders/");
 
   return response.data;
 };
@@ -135,3 +117,4 @@ export const cancelOrder = async (orderToken) => {
 
   return response.data;
 };
+

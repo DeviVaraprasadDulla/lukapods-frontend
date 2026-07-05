@@ -7,13 +7,28 @@ import { useCart } from "@/context/CartContext";
 import CartItemCard from "@/components/cart/CartItemCard";
 import CartSummary from "@/components/cart/CartSummary";
 import EmptyCart from "@/components/cart/EmptyCart";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/context/AuthContext";
 
 const Cart = () => {
+  const navigate = useNavigate();
+    const { isAuthenticated } = useAuth();
+
+
   const { cartItems, cartTotal, loading } = useCart();
 
-  const handleCheckout = () => {
-    console.log("Checkout");
-  };
+const handleCheckout = () => {
+  console.log("Authenticated:", isAuthenticated);
+
+  if (!isAuthenticated) {
+    navigate("/login", {
+      state: { from: "/checkout" },
+    });
+    return;
+  }
+
+  navigate("/checkout");
+};
 
   return (
     <main
