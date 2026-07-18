@@ -11,14 +11,18 @@ import {
   Award,
 } from "lucide-react";
 
-const ProductHeroSection = ({ product }) => {
+const ProductHeroSection = ({ product, onAddToCart }) => {
   const [selectedImage, setSelectedImage] = useState(
     product?.images?.[0] || null,
   );
   const [wishlisted, setWishlisted] = useState(false);
   const [showToast, setShowToast] = useState(false);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    if (onAddToCart) {
+      await onAddToCart();
+    }
+
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2500);
   };
