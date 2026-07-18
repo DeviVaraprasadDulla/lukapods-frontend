@@ -16,8 +16,8 @@ import Cart from "@/pages/Cart";
 import Checkout from "./pages/Checkout";
 import Login from "@/pages/Login";
 import ProtectedRoute from "@/components/auth/ProtectedRoute";
-import Payment from "@/pages/Payment";
-import PaymentSuccess from "@/pages/PaymentSuccess";
+import Payment from "./pages/payment/Payment";
+import PaymentSuccess from "./pages/payment/PaymentSuccess";
 import MyOrders from "@/pages/MyOrders";
 import Account from "@/pages/Account";
 
@@ -56,21 +56,22 @@ const App = () => {
               }
             />
             <Route
-                path="/payment"
-                element={
-                  <ProtectedRoute>
-                    <Payment />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                  path="/payment-success"
-                  element={
-                    <ProtectedRoute>
-                      <PaymentSuccess />
-                    </ProtectedRoute>
-                  }
-                />
+              path="/payment/:token"
+              element={
+                <ProtectedRoute>
+                  <Payment />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/payment-success/:token"
+              element={
+                <ProtectedRoute>
+                  <PaymentSuccess />
+                </ProtectedRoute>
+              }
+            />
                 <Route
                   path="/my-orders"
                   element={

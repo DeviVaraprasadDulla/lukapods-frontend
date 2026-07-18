@@ -142,17 +142,23 @@ useEffect(() => {
   //     setPlacingOrder(false);
   //   }
   // };
-const handlePlaceOrder = () => {
+const handlePlaceOrder = async () => {
   if (!selectedAddress) {
     alert("Please select an address");
     return;
   }
 
-  navigate("/payment", {
-    state: {
-      addressId: selectedAddress,
-    },
-  });
+  try {
+    setPlacingOrder(true);
+
+    const response = await createOrder(selectedAddress);
+
+    navigate(`/payment/${response.order_token}`);
+  } catch (error) {
+    alert(error?.response?.data?.error || "Failed to create order");
+  } finally {
+    setPlacingOrder(false);
+  }
 };
   /*
   |--------------------------------------------------------------------------
