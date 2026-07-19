@@ -4,9 +4,9 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 const CartSummary = ({ cartItems = [], cartTotal = 0, onCheckout }) => {
   const itemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-  const shipping = cartTotal > 999 ? 0 : 99;
+  // const shipping = cartTotal > 999 ? 0 : 60;
 
-  const finalTotal = Number(cartTotal) + shipping;
+  // const finalTotal = Number(cartTotal) + shipping;
 
   return (
     <motion.div
@@ -127,38 +127,38 @@ const CartSummary = ({ cartItems = [], cartTotal = 0, onCheckout }) => {
             text-[#020817]
           "
         >
-          {shipping === 0 ? "Free" : `₹${shipping}`}
+          Calculated at checkout
         </span>
       </div>
 
-      {/* DISCOUNT */}
-
-      <div
-        className="
-          flex
-          items-center
-          justify-between
-
-          py-2
-        "
-      >
-        <span
+        {/*
+        <div
           className="
-            text-slate-500
+            flex
+            items-center
+            justify-between
+
+            py-2
           "
         >
-          Savings
-        </span>
+          <span
+            className="
+              text-slate-500
+            "
+          >
+            Savings
+          </span>
 
-        <span
-          className="
-            font-semibold
-            text-green-600
-          "
-        >
-          Included
-        </span>
-      </div>
+          <span
+            className="
+              font-semibold
+              text-green-600
+            "
+          >
+            Included
+          </span>
+        </div>
+        */}
 
       {/* TOTAL */}
 
@@ -198,7 +198,7 @@ const CartSummary = ({ cartItems = [], cartTotal = 0, onCheckout }) => {
               text-[#020817]
             "
           >
-            ₹{finalTotal}
+            ₹{cartTotal}
           </span>
         </div>
       </div>
@@ -276,24 +276,6 @@ const CartSummary = ({ cartItems = [], cartTotal = 0, onCheckout }) => {
         <ArrowRight size={18} />
       </motion.button>
 
-      {/* FREE SHIPPING NOTE */}
-
-      {shipping > 0 && (
-        <p
-          className="
-            mt-4
-
-            text-center
-
-            text-xs
-
-            text-slate-500
-          "
-        >
-          Add products worth ₹{1000 - Number(cartTotal)}
-          more to unlock free shipping.
-        </p>
-      )}
     </motion.div>
   );
 };

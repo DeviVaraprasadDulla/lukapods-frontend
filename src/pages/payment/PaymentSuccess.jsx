@@ -33,31 +33,51 @@ const PaymentSuccess = () => {
         animate={{ scale: 1, opacity: 1 }}
         className="bg-white rounded-3xl shadow-2xl p-10 max-w-xl w-full text-center"
       >
-        <div className="text-5xl mb-4">🎉</div>
+        <div className="mb-6 flex justify-center">
+          <img
+            src="/images/luka-logo.png"
+            alt="LukaPods"
+            className="h-20 w-auto object-contain"
+          />
+        </div>
 
-        <h2 className="text-3xl font-bold text-green-600 mb-4">
+        <h2 className="mb-3 text-4xl font-black tracking-tight text-[#0A84D8]">
           Payment Successful
         </h2>
 
-        <p className="text-gray-600 mb-6">
-          Your order has been confirmed successfully.
+        <p className="mx-auto mb-8 max-w-sm text-slate-600 leading-7">
+          Thank you for choosing LukaPods. Your order has been confirmed successfully and is now being processed.
         </p>
+        <div className="mb-8 rounded-3xl border border-slate-200 bg-slate-50 p-6 text-left">
 
-        <div className="text-left bg-gray-50 p-4 rounded-xl mb-6">
-          <p>
-            <strong>Order Number:</strong> {order.order_number}
+          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            Order Number
           </p>
-          <p>
-            <strong>Total:</strong> ₹{order.total_amount}
-          </p>
-          <p>
-            <strong>Status:</strong> {order.order_status}
-          </p>
+
+          <h3 className="mt-1 text-xl font-black text-[#0A84D8]">
+            #{order.order_token.slice(0, 8).toUpperCase()}
+          </h3>
+
+          <div className="mt-5 inline-flex rounded-full bg-[#E8F4FD] px-4 py-2 text-sm font-semibold text-[#0A84D8]">
+            {order.order_status}
+          </div>
+
         </div>
 
         <button
           onClick={() => navigate("/my-orders")}
-          className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold"
+          className="
+            w-full
+            rounded-full
+            bg-[#0A84D8]
+            py-4
+            font-semibold
+            text-white
+            transition-all
+            duration-300
+            hover:bg-[#086DB2]
+            hover:shadow-lg
+            "
         >
           Go to My Orders
         </button>

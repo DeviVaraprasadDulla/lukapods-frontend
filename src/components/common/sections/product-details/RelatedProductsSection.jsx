@@ -7,7 +7,7 @@ import ProductCard from "@/components/common/product/ProductCard";
 import { getProducts } from "@/api/productApi";
 
 import { useNavigate } from "react-router-dom";
-
+import PageLoader from "@/components/common/PageLoader";
 const RelatedProductsSection = ({ slug, category }) => {
   const [products, setProducts] = useState([]);
 
