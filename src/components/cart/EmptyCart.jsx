@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ShoppingBag, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const EmptyCart = () => {
+const EmptyCart = ({ onClose }) => {
   const navigate = useNavigate();
 
   return (
@@ -153,7 +153,10 @@ const EmptyCart = () => {
         whileTap={{
           scale: 0.97,
         }}
-        onClick={() => navigate("/products")}
+        onClick={() => {
+            onClose?.();
+            navigate("/products");
+          }}
         className="
           mt-8
 

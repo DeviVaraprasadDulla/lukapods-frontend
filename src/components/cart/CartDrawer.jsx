@@ -127,7 +127,9 @@ const CartDrawer = ({ open, onClose }) => {
 
             {/* EMPTY STATE */}
 
-            {cartItems.length === 0 && <EmptyCart />}
+            {cartItems.length === 0 && (
+                <EmptyCart onClose={onClose} />
+              )}
 
             {/* CART ITEMS */}
 

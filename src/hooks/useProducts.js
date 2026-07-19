@@ -15,7 +15,7 @@ const useFeaturedProducts = () => {
 
       const data = await getFeaturedProducts();
 
-      console.log("FEATURED PRODUCTS:", data);
+      // console.log("FEATURED PRODUCTS:", data);
 
       setProducts(data?.results || []);
     } catch (err) {

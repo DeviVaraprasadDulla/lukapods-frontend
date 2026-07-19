@@ -235,7 +235,7 @@ const handleCheckout = () => {
                 mx-auto
               "
           >
-            <EmptyCart />
+           <EmptyCart onClose={closeDrawer} />
           </div>
         )}
 
