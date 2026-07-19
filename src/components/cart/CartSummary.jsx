@@ -102,34 +102,40 @@ const CartSummary = ({ cartItems = [], cartTotal = 0, onCheckout }) => {
         </span>
       </div>
 
-      {/* SHIPPING */}
 
-      <div
-        className="
-          flex
-          items-center
-          justify-between
+        {/* SHIPPING */}
 
-          py-2
-        "
-      >
-        <span
+        <div
           className="
-            text-slate-500
+            flex
+            flex-col
+            gap-1
+
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+
+            py-2
           "
         >
-          Shipping
-        </span>
+          <span className="text-slate-500">
+            Shipping
+          </span>
 
-        <span
-          className="
-            font-semibold
-            text-[#020817]
-          "
-        >
-          Calculated at checkout
-        </span>
-      </div>
+          <span
+            className="
+              text-sm
+              sm:text-base
+
+              font-semibold
+              text-[#020817]
+
+              sm:text-right
+            "
+          >
+            Calculated at checkout
+          </span>
+        </div>
 
         {/*
         <div

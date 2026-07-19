@@ -18,6 +18,7 @@ const Cart = () => {
   const { cartItems, cartTotal, loading } = useCart();
 
 const handleCheckout = () => {
+
   console.log("Authenticated:", isAuthenticated);
 
   if (!isAuthenticated) {
@@ -28,6 +29,9 @@ const handleCheckout = () => {
   }
 
   navigate("/checkout");
+    setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 0);
 };
 
   return (

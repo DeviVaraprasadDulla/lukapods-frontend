@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import useCheckout from "@/hooks/useCheckout";
 import CheckoutHeader from "@/components/common/checkout/CheckoutHeader";
 import ContactSection from "@/components/common/checkout/ContactSection";
@@ -27,8 +28,18 @@ export default function Checkout() {
     setEditingAddress,
     handleEditAddress,
     handleDeleteAddress,
+    
   } = useCheckout();
 const { user, isAuthenticated } = useAuth();
+ // 👇 Add this here
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "auto",
+    });
+  }, []);
+
   if (loading) {
     return <PageLoader text="Loading checkout..." />;
   }

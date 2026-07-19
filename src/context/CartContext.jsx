@@ -70,43 +70,46 @@ export const CartProvider = ({ children }) => {
   |--------------------------------------------------------------------------
   */
 
-  const updateQuantity = async (itemId, quantity) => {
-    try {
-      await updateCartItemApi({
-        itemId,
-        quantity,
-      });
+        const updateQuantity = async (itemId, quantity) => {
+          try {
+            await updateCartItemApi({
+              itemId,
+              quantity,
+            });
 
-      await fetchCart();
+            await fetchCart();
 
-      return true;
-    } catch (error) {
-      console.error(error);
+            return true;
+          } catch (error) {
+            console.error(error);
 
-      return false;
-    }
-  };
+            // If item no longer exists, reload cart
+            if (error.response?.status === 404) {
+              await fetchCart();
+            }
 
-  /*
-  |--------------------------------------------------------------------------
-  | REMOVE ITEM
-  |--------------------------------------------------------------------------
-  */
+            return false;
+          }
+        };
 
-  const removeItem = async (itemId) => {
-    try {
-      await removeCartItemApi(itemId);
+        const removeItem = async (itemId) => {
+          try {
+            await removeCartItemApi(itemId);
 
-      await fetchCart();
+            await fetchCart();
 
-      return true;
-    } catch (error) {
-      console.error(error);
+            return true;
+          } catch (error) {
+            console.error(error);
 
-      return false;
-    }
-  };
+            // If item was already removed, sync UI
+            if (error.response?.status === 404) {
+              await fetchCart();
+            }
 
+            return false;
+          }
+        };
   /*
   |--------------------------------------------------------------------------
   | TOTAL COUNT
