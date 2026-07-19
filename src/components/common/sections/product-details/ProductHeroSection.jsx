@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "@/context/CartContext";
 import {
   Heart,
   ShoppingBag,
@@ -17,7 +19,8 @@ const ProductHeroSection = ({ product, onAddToCart }) => {
   );
   const [wishlisted, setWishlisted] = useState(false);
   const [showToast, setShowToast] = useState(false);
-
+const navigate = useNavigate();
+const { cartItems} = useCart();
   const handleAddToCart = async () => {
     if (onAddToCart) {
       await onAddToCart();
@@ -26,7 +29,17 @@ const ProductHeroSection = ({ product, onAddToCart }) => {
     setShowToast(true);
     setTimeout(() => setShowToast(false), 2500);
   };
+const handleBuyNow = async () => {
+  const alreadyInCart = cartItems.some(
+    (item) => item.product.id === product.id
+  );
 
+  if (!alreadyInCart) {
+    await onAddToCart();
+  }
+
+  navigate("/cart");
+};
   return (
     <section className="relative overflow-hidden pt-28 pb-16 lg:pt-32 lg:pb-20">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-cyan-200/30 blur-[160px] pointer-events-none" />
@@ -153,12 +166,27 @@ const ProductHeroSection = ({ product, onAddToCart }) => {
               ))}
             </div>
 
-            <div className="mt-8 flex gap-4 flex-wrap">
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={handleAddToCart}
-                className="flex-1 min-w-[200px] h-14 rounded-full bg-gradient-to-r from-[#020817] to-[#0f172a] text-white font-semibold flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(2,8,23,0.25)] hover:shadow-[0_15px_40px_rgba(2,8,23,0.35)] transition-all duration-300"
+                className="
+                flex-1
+                min-h-[64px]
+                py-5
+                rounded-full
+                bg-gradient-to-r
+                from-[#020817]
+                to-[#0f172a]
+                text-white
+                text-base
+                font-semibold
+                flex
+                items-center
+                justify-center
+                gap-3
+              "
               >
                 <ShoppingBag size={18} />
                 Add To Cart
@@ -167,15 +195,43 @@ const ProductHeroSection = ({ product, onAddToCart }) => {
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                className="flex-1 min-w-[200px] h-14 rounded-full bg-white border border-slate-200 font-semibold"
+                onClick={handleBuyNow}
+                className="
+                  flex-1
+                  min-h-[64px]
+                  py-5
+                  rounded-full
+                  bg-gradient-to-r
+                  from-cyan-500
+                  to-cyan-600
+                  text-white
+                  text-base
+                  font-semibold
+                  flex
+                  items-center
+                  justify-center
+                  gap-3
+                "
               >
+                <Sparkles size={18} />
                 Buy Now
               </motion.button>
 
               <motion.button
                 whileTap={{ scale: 1.4, rotate: 15 }}
                 onClick={() => setWishlisted(!wishlisted)}
-                className="h-14 w-14 rounded-full bg-white border border-slate-200 flex items-center justify-center"
+                className="
+                  h-14
+                  w-14
+                  rounded-full
+                  bg-white
+                  border
+                  border-slate-200
+                  flex
+                  items-center
+                  justify-center
+                  shrink-0
+                "
               >
                 <motion.div animate={wishlisted ? { scale: [1, 1.3, 1] } : {}}>
                   <Heart

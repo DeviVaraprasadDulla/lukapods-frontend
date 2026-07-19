@@ -112,7 +112,14 @@ const ProductsGridSection = () => {
                 >
                   <ProductCard
                     product={product}
-                    onNavigate={() => navigate(`/products/${product.slug}`)}
+                    onNavigate={() => {
+                        window.scrollTo({
+                          top: 0,
+                          behavior: "smooth",
+                        });
+
+                        navigate(`/products/${product.slug}`);
+                      }}
                     onQuickAdd={() => handleQuickAdd(product)}
                   />
                 </motion.div>

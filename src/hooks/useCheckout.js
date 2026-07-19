@@ -65,7 +65,7 @@ const [editingAddress, setEditingAddress] = useState(null);
     getAddresses(),
     ]);
 
-    console.log("Checkout Data:", checkoutData);
+    // console.log("Checkout Data:", checkoutData);
       setCheckout(checkoutData);
       setAddresses(addressData || []);
 

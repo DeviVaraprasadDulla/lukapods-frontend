@@ -15,6 +15,7 @@ const Navbar = () => {
   const [hideAnnouncementSpace, setHideAnnouncementSpace] = useState(false);
   const { cartCount } = useCart();
   const [cartOpen, setCartOpen] = useState(false);
+  // const { cartOpen, closeCart } = useCart();
 const [profileOpen, setProfileOpen] = useState(false);
   //
   // SCROLL EFFECTS
@@ -554,6 +555,12 @@ const [profileOpen, setProfileOpen] = useState(false);
 
       {/* OVERLAY SYSTEM DRAWER (Professional Approach: Outer z-index container removed) */}
       <CartDrawer open={cartOpen} onClose={() => setCartOpen(false)} />
+      
+       {/* <CartDrawer
+        open={cartOpen}
+        onClose={closeCart}
+      /> */}
+              
     </>
   );
 };

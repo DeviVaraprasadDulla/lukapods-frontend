@@ -13,6 +13,11 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const [loading, setLoading] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
+
+const openCart = () => setCartOpen(true);
+
+const closeCart = () => setCartOpen(false);
 
   /*
   |--------------------------------------------------------------------------
@@ -151,6 +156,9 @@ export const CartProvider = ({ children }) => {
             addToCart,
             updateQuantity,
             removeItem,
+            cartOpen,
+            openCart,
+            closeCart,
           }}
         >
       {children}

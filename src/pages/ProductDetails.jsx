@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { useLayoutEffect } from "react";
 import { getProductDetails } from "@/api/productApi";
 import { useCart } from "@/context/CartContext";
 
@@ -44,12 +44,9 @@ const ProductDetails = () => {
   |--------------------------------------------------------------------------
   */
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, [slug]);
+useLayoutEffect(() => {
+  window.scrollTo(0, 0);
+}, [slug]);
 
   /*
   |--------------------------------------------------------------------------
