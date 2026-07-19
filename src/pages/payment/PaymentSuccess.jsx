@@ -25,7 +25,7 @@ const PaymentSuccess = () => {
   if (!order) return null;
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-white px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[radial-gradient(circle_at_top,#EAF6FF_0%,#F8FBFF_45%,#FFFFFF_100%)]">
       <ConfettiEffect />
 
       <motion.div
