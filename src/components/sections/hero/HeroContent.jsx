@@ -1,7 +1,7 @@
 // src/components/sections/hero/HeroContent.jsx
 
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const HeroContent = () => {
   return (
     <div
@@ -182,68 +182,77 @@ const HeroContent = () => {
           sm:mt-10
         "
       >
-        <button
-          className="
-            h-[52px]
-            sm:h-[56px]
+       <Link to="/products">
+            <button
+              className="
+                h-[52px]
+                sm:h-[56px]
 
-            px-7
-            sm:px-8
+                px-7
+                sm:px-8
 
-            rounded-full
+                rounded-full
 
-            bg-[#0f172a]
+                bg-[#0f172a]
 
-            text-white
+                text-white
 
-            text-[14px]
-            sm:text-[15px]
+                text-[14px]
+                sm:text-[15px]
 
-            font-semibold
+                font-semibold
 
-            shadow-[0_18px_40px_rgba(15,23,42,0.14)]
+                shadow-[0_18px_40px_rgba(15,23,42,0.14)]
 
-            transition-all
-            duration-300
+                transition-all
+                duration-300
 
-            hover:scale-[1.03]
-            hover:bg-[#111c35]
-          "
-        >
-          Explore Products
-        </button>
+                hover:scale-[1.03]
+                hover:bg-[#111c35]
+              "
+            >
+              Explore Products
+            </button>
+          </Link>
 
-        <button
-          className="
-            h-[52px]
-            sm:h-[56px]
+              <button
+                onClick={() => {
+                  document
+                    .getElementById("experience")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                }}
+                className="
+                  h-[52px]
+                  sm:h-[56px]
 
-            px-7
-            sm:px-8
+                  px-7
+                  sm:px-8
 
-            rounded-full
+                  rounded-full
 
-            border
-            border-slate-300/80
+                  border
+                  border-slate-300/80
 
-            bg-white/75
-            backdrop-blur-xl
+                  bg-white/75
+                  backdrop-blur-xl
 
-            text-slate-600
+                  text-slate-600
 
-            text-[14px]
-            sm:text-[15px]
+                  text-[14px]
+                  sm:text-[15px]
 
-            font-semibold
+                  font-semibold
 
-            transition-all
-            duration-300
+                  transition-all
+                  duration-300
 
-            hover:bg-white
-          "
-        >
-          Watch Experience
-        </button>
+                  hover:bg-white
+                "
+              >
+                Watch Experience
+              </button>
       </motion.div>
 
       {/* STATS */}

@@ -18,7 +18,9 @@ const HomePage = () => {
 
       <PremiumFeaturesSection />
 
-      <VideoExperienceSection />
+      <section id="experience" className="scroll-mt-24">
+        <VideoExperienceSection />
+      </section>
 
       <FeaturedProductsSection />
 
