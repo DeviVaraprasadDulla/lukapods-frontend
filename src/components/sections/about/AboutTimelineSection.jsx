@@ -205,8 +205,8 @@ const AboutTimelineSection = () => {
                           lg:mt-2
                         "
                       >
-                        Learn More
-                        <ArrowUpRight size={16} />
+                        {/* Learn More
+                        <ArrowUpRight size={16} /> */}
                       </button>
                     </div>
                   </motion.div>

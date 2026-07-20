@@ -316,8 +316,8 @@ const FounderStorySection = () => {
                         text-cyan-600
                       "
                     >
-                      Learn More
-                      <ArrowUpRight size={16} />
+                      {/* Learn More
+                      <ArrowUpRight size={16} /> */}
                     </button>
                   </motion.div>
                 );

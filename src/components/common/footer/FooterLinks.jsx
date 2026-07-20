@@ -1,56 +1,25 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import ScrollLink from "@/components/common/ScrollLink";
 
 const footerLinks = [
   {
     title: "Navigation",
     links: [
-      {
-        label: "Home",
-        path: "/",
-      },
-      {
-        label: "About",
-        path: "/about",
-      },
-      {
-        label: "Blogs",
-        path: "/blogs",
-      },
-      {
-        label: "Products",
-        path: "/products",
-      },
+      { label: "Home", path: "/" },
+      { label: "About", path: "/about" },
+      { label: "Blogs", path: "/blogs" },
+      { label: "Products", path: "/products" },
     ],
   },
-
   {
     title: "Company",
     links: [
-      {
-        label: "Innovation",
-        path: "/about",
-      },
-      {
-        label: "Research",
-        path: "/blogs",
-      },
-      {
-        label: "Contact",
-        path: "/contact",
-      },
-      {
-        label: "Privacy Policy",
-        path: "/privacy-policy",
-      },
-      {
-        label: "Terms & Conditions",
-        path: "/terms",
-      },
-      {
-        label: "Refund Policy",
-        path: "/refund-policy",
-      },
+      { label: "Innovation", path: "/about" },
+      { label: "Research", path: "/blogs" },
+      { label: "Contact", path: "/contact" },
+      { label: "Privacy Policy", path: "/privacy-policy" },
+      { label: "Terms & Conditions", path: "/terms" },
+      { label: "Refund Policy", path: "/refund-policy" },
     ],
   },
 ];
@@ -82,11 +51,9 @@ const FooterLinks = () => {
             {section.links.map((link) => (
               <motion.div
                 key={link.label}
-                whileHover={{
-                  x: 4,
-                }}
+                whileHover={{ x: 4 }}
               >
-                <Link
+                <ScrollLink
                   to={link.path}
                   className="
                     text-[15px]
@@ -97,7 +64,7 @@ const FooterLinks = () => {
                   "
                 >
                   {link.label}
-                </Link>
+                </ScrollLink>
               </motion.div>
             ))}
           </div>

@@ -11,20 +11,32 @@ const Login = () => {
     const { login } = useAuth();
 
     const handleGoogleSuccess = async (credentialResponse) => {
-        try {
-            const res = await api.post("/users/google-login/", {
+    try {
+        const guestId = localStorage.getItem("guest_id");
+
+        console.log("Guest ID from localStorage:", guestId);
+
+        const res = await api.post(
+            "/users/google-login/",
+            {
                 token: credentialResponse.credential,
-            });
+            },
+            {
+                headers: {
+                    "X-GUEST-ID": guestId,
+                },
+            }
+        );
 
-            login(res.data);
+        login(res.data);
 
-            navigate(location.state?.from || "/", {
-                replace: true,
-            });
-        } catch (err) {
-            console.log(err);
-        }
-    };
+        navigate(location.state?.from || "/", {
+            replace: true,
+        });
+    } catch (err) {
+        console.log(err);
+    }
+};
 
     return (
         <main className="relative min-h-screen overflow-hidden bg-[radial-gradient(circle_at_top,#EAF6FF_0%,#F8FBFF_45%,#FFFFFF_100%)]">

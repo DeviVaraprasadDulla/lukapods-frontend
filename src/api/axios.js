@@ -35,9 +35,19 @@ api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("access_token");
 
+    // Get or create guest ID
+    let guestId = localStorage.getItem("guest_id");
+
+    if (!guestId) {
+      guestId = crypto.randomUUID();
+      localStorage.setItem("guest_id", guestId);
+    }
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    config.headers["X-GUEST-ID"] = guestId;
 
     return config;
   },

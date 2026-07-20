@@ -85,7 +85,7 @@ const FutureVisionSection = () => {
                     text-cyan-300
                   "
                 >
-                  Luka Vision
+                  {/* Luka Vision */}
                 </p>
 
                 <h2
@@ -124,7 +124,7 @@ const FutureVisionSection = () => {
                 </p>
 
                 {/* CTA */}
-                <motion.button
+                {/* <motion.button
                   whileHover={{
                     scale: 1.02,
                   }}
@@ -142,9 +142,9 @@ const FutureVisionSection = () => {
                     shadow-[0_20px_50px_rgba(34,211,238,0.24)]
                   "
                 >
-                  Luka Vision
+                  {/* Luka Vision */}
                   
-                </motion.button>
+                {/* </motion.button>  */}
               </div>
             </div>
 

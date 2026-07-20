@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 
 const items = [
-  "🚚 Free Shipping on Orders Over $50",
-  "⭐ Rated 4.8 by Thousands of Customers",
-  "🎁 1M+ Toys Delivered Nationwide",
-  "😊 Trusted by 750,000+ Families",
+  "🧺 Deep Cleaning in Every Pod",
+  "🌸 Long-Lasting Fragrance",
+  "🛡️ Protects Colors & Fabric",
+  "🚚 Fast Delivery Across India",
 ];
 const Highlights = () => {
   return (

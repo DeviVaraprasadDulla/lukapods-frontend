@@ -181,7 +181,7 @@ const AboutHeroSection = () => {
                 "
               >
                 Explore Journey
-                <ArrowUpRight size={18} />
+                {/* <ArrowUpRight size={18} /> */}
               </motion.button>
 
               <div className="flex items-center gap-3">

@@ -238,7 +238,7 @@ const ProductsHeroSection = () => {
                 text-slate-700
               "
             >
-              Learn More
+              {/* Learn More */}
             </button>
           </div>
 

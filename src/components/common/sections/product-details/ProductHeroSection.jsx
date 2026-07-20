@@ -20,7 +20,21 @@ const ProductHeroSection = ({ product, onAddToCart }) => {
   const [wishlisted, setWishlisted] = useState(false);
   const [showToast, setShowToast] = useState(false);
 const navigate = useNavigate();
-const { cartItems} = useCart();
+const {
+  cartItems,
+  updateQuantity,
+  removeItem,
+} = useCart();
+
+const cartItem = cartItems.find((item) => {
+  const productId =
+    typeof item.product === "object"
+      ? item.product.id
+      : item.product || item.product_id;
+
+  return productId === product.id;
+});
+
   const handleAddToCart = async () => {
     if (onAddToCart) {
       await onAddToCart();
@@ -167,11 +181,12 @@ const handleBuyNow = async () => {
             </div>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={handleAddToCart}
-                className="
+            {!cartItem ? (
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={handleAddToCart}
+              className="
                 flex-1
                 min-h-[64px]
                 py-5
@@ -187,10 +202,72 @@ const handleBuyNow = async () => {
                 justify-center
                 gap-3
               "
+            >
+              <ShoppingBag size={18} />
+              Add To Cart
+            </motion.button>
+          ) : (
+            <div className="flex-1">
+              <div
+                className="
+                  min-h-[64px]
+                  rounded-full
+                  border
+                  border-slate-200
+                  bg-white
+                  flex
+                  items-center
+                  justify-between
+                  px-6
+                "
               >
-                <ShoppingBag size={18} />
-                Add To Cart
-              </motion.button>
+                <button
+                  onClick={async () => {
+                    if (cartItem.quantity === 1) {
+                      await removeItem(cartItem.id);
+                    } else {
+                      await updateQuantity(
+                        cartItem.id,
+                        cartItem.quantity - 1
+                      );
+                    }
+                  }}
+                  className="text-2xl font-bold"
+                >
+                  −
+                </button>
+
+                <span className="text-lg font-semibold">
+                  {cartItem.quantity}
+                </span>
+
+                <button
+                  onClick={() =>
+                    updateQuantity(
+                      cartItem.id,
+                      cartItem.quantity + 1
+                    )
+                  }
+                  className="text-2xl font-bold"
+                >
+                  +
+                </button>
+              </div>
+
+              <button
+                onClick={() => navigate("/cart")}
+                className="
+                  mt-3
+                  text-sm
+                  font-semibold
+                  text-cyan-600
+                  hover:text-cyan-700
+                "
+              >
+                View Cart →
+              </button>
+            </div>
+          )}
 
               <motion.button
                 whileHover={{ scale: 1.02 }}

@@ -57,7 +57,7 @@ const OrderSummary = ({
 
         <div className="flex justify-between">
           <span className="text-gray-600">Subtotal</span>
-          <span>₹{checkout.summary.subtotal}</span>
+          <span>₹{checkout.summary?.subtotal ?? 0}</span>
         </div>
 
         <div className="flex justify-between">
