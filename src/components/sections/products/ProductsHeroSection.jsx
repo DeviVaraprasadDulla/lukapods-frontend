@@ -218,7 +218,7 @@ const ProductsHeroSection = () => {
               Shop Collection
             </button>
 
-            <button
+            {/* <button
               className="
                 h-12
 
@@ -239,7 +239,7 @@ const ProductsHeroSection = () => {
               "
             >
               {/* Learn More */}
-            </button>
+            {/* </button> */}
           </div>
 
           {/* STATS */}
