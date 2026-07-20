@@ -293,8 +293,8 @@ const GlobalVisionSection = () => {
                         text-cyan-600
                       "
                     >
-                      Explore More
-                      <ArrowUpRight size={16} />
+                      {/* Explore More
+                      <ArrowUpRight size={16} /> */}
                     </button>
                   </motion.div>
                 );

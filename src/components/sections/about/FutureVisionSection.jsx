@@ -142,8 +142,8 @@ const FutureVisionSection = () => {
                     shadow-[0_20px_50px_rgba(34,211,238,0.24)]
                   "
                 >
-                  Explore Luka Vision
-                  <ArrowUpRight size={18} />
+                  Luka Vision
+                  
                 </motion.button>
               </div>
             </div>

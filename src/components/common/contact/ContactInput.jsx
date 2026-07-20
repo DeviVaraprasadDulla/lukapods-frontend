@@ -3,6 +3,8 @@ const ContactInput = ({
   type = "text",
   placeholder,
   textarea = false,
+  value,
+  onChange,
 }) => {
   const baseStyles = `
     w-full
@@ -41,12 +43,16 @@ const ContactInput = ({
         <textarea
           rows={6}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           className={baseStyles}
         />
       ) : (
         <input
           type={type}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           className={baseStyles}
         />
       )}

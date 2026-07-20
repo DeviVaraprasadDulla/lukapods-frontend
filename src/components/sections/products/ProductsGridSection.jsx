@@ -14,13 +14,13 @@ const ProductsGridSection = () => {
 
   const { addToCart } = useCart();
 
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "instant",
-    });
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     left: 0,
+  //     behavior: "instant",
+  //   });
+  // }, []);
 
   const handleQuickAdd = async (product) => {
     const result = await addToCart(product.id, 1);
@@ -113,13 +113,8 @@ const ProductsGridSection = () => {
                   <ProductCard
                     product={product}
                     onNavigate={() => {
-                        window.scrollTo({
-                          top: 0,
-                          behavior: "smooth",
-                        });
-
-                        navigate(`/products/${product.slug}`);
-                      }}
+                      navigate(`/products/${product.slug}`);
+                    }}
                     onQuickAdd={() => handleQuickAdd(product)}
                   />
                 </motion.div>

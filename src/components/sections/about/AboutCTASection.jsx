@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles, Globe2, Rocket } from "lucide-react";
-
+import { useNavigate } from "react-router-dom";
 import AboutFloatingParticles from "@/components/common/about/AboutFloatingParticles";
 
 const AboutCTASection = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative overflow-hidden bg-[#071120] py-24 lg:py-32">
       {/* Background */}
@@ -241,12 +242,9 @@ const AboutCTASection = () => {
                 {/* Buttons */}
                 <div className="mt-10 space-y-4">
                   <motion.button
-                    whileHover={{
-                      scale: 1.02,
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => navigate("/")}
                     className="
                       flex w-full items-center
                       justify-between
@@ -264,12 +262,9 @@ const AboutCTASection = () => {
                   </motion.button>
 
                   <motion.button
-                    whileHover={{
-                      scale: 1.02,
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => navigate("/contact")}
                     className="
                       flex w-full items-center
                       justify-between

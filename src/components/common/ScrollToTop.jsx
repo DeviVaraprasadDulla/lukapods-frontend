@@ -6,14 +6,7 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     window.history.scrollRestoration = "manual";
-
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "auto",
-      });
-    });
+    window.scrollTo(0, 0);
   }, [pathname]);
 
   return null;
