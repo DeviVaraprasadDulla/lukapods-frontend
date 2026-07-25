@@ -43,17 +43,21 @@ const FeaturedProductsSection = () => {
   |--------------------------------------------------------------------------
   */
 
-  const handleQuickAdd = async (product) => {
-    try {
-      const result = await addToCart(product.id, 1);
+const handleQuickAdd = async (product) => {
+  try {
+    const result = await addToCart(product.id, 1);
 
-      if (!result.success) {
-        console.error(result.message);
-      }
-    } catch (error) {
-      console.error("Add to cart error:", error);
+    if (!result.success) {
+      alert(result.message);
+      return;
     }
-  };
+
+    // Product successfully added → go to cart
+    navigate("/cart");
+  } catch (error) {
+    console.error("Add to cart error:", error);
+  }
+};
 
   return (
     <section

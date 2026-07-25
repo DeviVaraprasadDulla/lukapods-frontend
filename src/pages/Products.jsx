@@ -4,8 +4,8 @@ import ProductsGridSection from "@/components/sections/products/ProductsGridSect
 const Products = () => {
   return (
     <main className="min-h-screen bg-[#edf3f8]">
-      <ProductsHeroSection />
       <ProductsGridSection />
+      <ProductsHeroSection />
     </main>
   );
 };

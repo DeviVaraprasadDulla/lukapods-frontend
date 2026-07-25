@@ -22,16 +22,17 @@ const ProductsGridSection = () => {
   //   });
   // }, []);
 
-  const handleQuickAdd = async (product) => {
-    const result = await addToCart(product.id, 1);
+const handleQuickAdd = async (product) => {
+  const result = await addToCart(product.id, 1);
 
-    if (!result.success) {
-      alert(result.message);
-      return;
-    }
-
-    console.log(`${product.name} added to cart`);
-  };
+  if (!result.success) {
+    alert(result.message);
+    return;
+  }
+console.log(`${product.name} added to cart`);
+  // Product added successfully → go to cart
+  navigate("/cart");
+};
 
   if (error) {
     return (
@@ -48,33 +49,6 @@ const ProductsGridSection = () => {
   return (
     <section className="pb-28">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-        {!loading && products.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="
-              mb-8
-              inline-flex
-              items-center
-              gap-2
-              rounded-full
-              bg-white/70
-              px-4
-              py-2
-              border
-              border-slate-200
-              backdrop-blur-md
-            "
-          >
-            <span className="font-bold text-slate-800">{products.length}</span>
-
-            <span className="text-slate-500 text-sm">
-              Premium Products Available
-            </span>
-          </motion.div>
-        )}
-
         <div
           className={`
             grid

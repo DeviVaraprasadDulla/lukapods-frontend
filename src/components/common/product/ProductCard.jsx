@@ -85,7 +85,7 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
               </span>
             )}
 
-            <button
+            {/* <button
               onClick={onWishlistToggle}
               aria-label={`Add ${product?.name || "product"} to wishlist`}
               className="
@@ -95,8 +95,8 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500
               "
             >
-              <Heart size={15} />
-            </button>
+              {/* <Heart size={15} /> */}
+            {/* </button> */} 
           </div>
         </header>
 
@@ -151,16 +151,33 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
           </div>
 
           {/* CONTEXTUAL ACTION LAYER */}
+          {/* QUICK ADD - ALWAYS VISIBLE */}
           {!isOutOfStock && (
             <motion.button
               whileHover={{ scale: 1.03 }}
-              onClick={onQuickAdd}
+              whileTap={{ scale: 0.97 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                onQuickAdd();
+              }}
               className="
-                absolute bottom-4 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 
-                translate-y-4 group-hover:translate-y-0 transition-all duration-500
-                h-[44px] px-5 rounded-full bg-[#020817] text-white text-[13px] font-semibold 
-                flex items-center gap-2 shadow-[0_15px_40px_rgba(2,8,23,0.20)] whitespace-nowrap z-30
-                focus-visible:opacity-100 focus-visible:translate-y-0
+                absolute
+                bottom-4
+                left-1/2
+                -translate-x-1/2
+                h-[44px]
+                px-5
+                rounded-full
+                bg-[#020817]
+                text-white
+                text-[13px]
+                font-semibold
+                flex
+                items-center
+                gap-2
+                shadow-[0_15px_40px_rgba(2,8,23,0.20)]
+                whitespace-nowrap
+                z-30
               "
             >
               <ShoppingBag size={14} />
@@ -178,8 +195,8 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
               <span className="text-[11px] font-semibold text-amber-700">
                 {formattedRating}
               </span>
-            </div>
-            <span className="text-[12px]">
+            </div> 
+             <span className="text-[12px]">
               ({product?.review_count || 0} reviews)
             </span>
           </div>
