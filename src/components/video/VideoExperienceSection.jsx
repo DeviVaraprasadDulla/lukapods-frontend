@@ -183,7 +183,7 @@ const VideoExperienceSection = () => {
                   text-slate-300
                 "
               >
-                Luka Experience
+                Why Choose Luka?
               </span>
             </div>
 

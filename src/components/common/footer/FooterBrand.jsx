@@ -4,8 +4,10 @@ import logo from "@/assets/logos/luka-logo.png";
 const FooterBrand = () => {
   return (
     <div className="max-w-md">
+
       {/* LOGO */}
       <div className="flex items-center gap-4">
+
         {/* LOGO CARD */}
         <motion.div
           whileHover={{
@@ -29,6 +31,7 @@ const FooterBrand = () => {
             shadow-[0_20px_60px_rgba(0,0,0,0.25)]
           "
         >
+
           {/* GLOW */}
           <div
             className="
@@ -56,10 +59,13 @@ const FooterBrand = () => {
               object-contain
             "
           />
+
         </motion.div>
+
 
         {/* TEXT */}
         <div>
+
           <h2
             className="
               text-[28px]
@@ -82,90 +88,70 @@ const FooterBrand = () => {
               text-slate-500
             "
           >
-            Luxury Laundry
+            Science Simplified Laundry
           </p>
+
         </div>
+
       </div>
 
-      {/* DESCRIPTION */}
-      <p
+
+      {/* READY TO SIMPLIFY */}
+      <h3
         className="
           mt-8
-          text-[15px]
-          leading-[2]
+          text-[22px]
+          sm:text-[24px]
+          font-bold
+          leading-tight
+          tracking-[-0.03em]
+          text-white
+        "
+      >
+        Ready to Simplify Laundry?
+      </h3>
+
+
+      {/* FOUR PILLARS */}
+      <p
+        className="
+          mt-5
+          text-[13px]
+          sm:text-[14px]
+          leading-[1.9]
+          font-medium
           text-slate-400
         "
       >
-        Luka Home Essentials is redefining modern fabric care through
-        science-driven innovation, premium design, and sustainable household
-        experiences crafted for the next generation of consumers.
+        <span className="text-slate-300">
+          Powerful Cleaning
+        </span>
+
+        <span className="mx-2 text-cyan-500/60">
+          ·
+        </span>
+
+        <span className="text-slate-300">
+          Effortless Convenience
+        </span>
+
+        <span className="mx-2 text-cyan-500/60">
+          ·
+        </span>
+
+        <span className="text-slate-300">
+          Luxury Experience
+        </span>
+
+        <span className="mx-2 text-cyan-500/60">
+          ·
+        </span>
+
+        <span className="text-slate-300">
+          Sustainable Innovation
+        </span>
       </p>
 
-      {/* PREMIUM BADGE */}
-      <motion.div
-        whileHover={{
-          y: -2,
-        }}
-        className="
-          mt-8
-          inline-flex
-          items-center
-          gap-3
-          rounded-full
-          border
-          border-white/10
-          bg-white/[0.03]
-          px-5
-          py-3
-          backdrop-blur-2xl
-          shadow-[0_10px_40px_rgba(255,255,255,0.03)]
-        "
-      >
-        <span
-          className="
-            relative
-            flex
-            h-2.5
-            w-2.5
-          "
-        >
-          <span
-            className="
-              absolute
-              inline-flex
-              h-full
-              w-full
-              animate-ping
-              rounded-full
-              bg-cyan-400
-              opacity-75
-            "
-          />
-
-          <span
-            className="
-              relative
-              inline-flex
-              h-2.5
-              w-2.5
-              rounded-full
-              bg-cyan-400
-            "
-          />
-        </span>
-
-        <span
-          className="
-            text-[11px]
-            font-bold
-            uppercase
-            tracking-[0.3em]
-            text-slate-300
-          "
-        >
-          Science Driven Innovation
-        </span>
-      </motion.div>
     </div>
   );
 };

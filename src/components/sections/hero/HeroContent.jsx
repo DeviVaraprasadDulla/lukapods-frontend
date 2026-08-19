@@ -2,6 +2,82 @@
 
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+
+// ======================================================
+// COUNT UP COMPONENT
+// ======================================================
+
+const CountUp = ({
+  end,
+  suffix = "",
+  duration = 1800,
+  repeatDelay = 12000,
+}) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let animationFrame;
+    let interval;
+
+    const startAnimation = () => {
+      let startTime = null;
+
+      const animate = (currentTime) => {
+        if (!startTime) {
+          startTime = currentTime;
+        }
+
+        const progress = Math.min(
+          (currentTime - startTime) / duration,
+          1
+        );
+
+        // Smooth premium easing
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+
+        setCount(Math.floor(easeOut * end));
+
+        if (progress < 1) {
+          animationFrame = requestAnimationFrame(animate);
+        } else {
+          setCount(end);
+        }
+      };
+
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    // First animation
+    startAnimation();
+
+    // Repeat animation every 12 seconds
+    interval = setInterval(() => {
+      setCount(0);
+      startAnimation();
+    }, repeatDelay);
+
+    // Cleanup
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      clearInterval(interval);
+    };
+  }, [end, duration, repeatDelay]);
+
+  return (
+    <>
+      {count}
+      {suffix}
+    </>
+  );
+};
+
+
+// ======================================================
+// HERO CONTENT
+// ======================================================
+
 const HeroContent = () => {
   return (
     <div
@@ -16,7 +92,11 @@ const HeroContent = () => {
         xl:max-w-[620px]
       "
     >
-      {/* BADGE */}
+
+      {/* ==================================================
+          BADGE
+      ================================================== */}
+
       <motion.div
         initial={{
           opacity: 0,
@@ -53,6 +133,7 @@ const HeroContent = () => {
           sm:mb-7
         "
       >
+
         <div
           className="
             w-2
@@ -76,11 +157,16 @@ const HeroContent = () => {
             text-slate-500
           "
         >
-          PREMIUM LAUNDRY EXPERIENCE
+          Designed for Smarter Laundry
         </span>
+
       </motion.div>
 
-      {/* HEADING */}
+
+      {/* ==================================================
+          HEADING
+      ================================================== */}
+
       <motion.h1
         initial={{
           opacity: 0,
@@ -109,8 +195,11 @@ const HeroContent = () => {
           tracking-[-0.05em]
         "
       >
+
         Clean Clothes.
+
         <br />
+
         <span
           className="
             text-slate-500
@@ -118,9 +207,14 @@ const HeroContent = () => {
         >
           Luxury Care.
         </span>
+
       </motion.h1>
 
-      {/* DESCRIPTION */}
+
+      {/* ==================================================
+          DESCRIPTION
+      ================================================== */}
+
       <motion.p
         initial={{
           opacity: 0,
@@ -149,12 +243,18 @@ const HeroContent = () => {
           max-w-[520px]
         "
       >
+
         Luka Pods delivers premium cleaning performance with luxurious fabric
         care, long-lasting freshness, and a modern washing experience designed
         for everyday elegance.
+
       </motion.p>
 
-      {/* BUTTONS */}
+
+      {/* ==================================================
+          BUTTONS
+      ================================================== */}
+
       <motion.div
         initial={{
           opacity: 0,
@@ -182,80 +282,93 @@ const HeroContent = () => {
           sm:mt-10
         "
       >
-       <Link to="/products">
-            <button
-              className="
-                h-[52px]
-                sm:h-[56px]
 
-                px-7
-                sm:px-8
+        {/* EXPLORE PRODUCTS */}
 
-                rounded-full
+        <Link to="/products">
 
-                bg-[#0f172a]
+          <button
+            className="
+              h-[52px]
+              sm:h-[56px]
 
-                text-white
+              px-7
+              sm:px-8
 
-                text-[14px]
-                sm:text-[15px]
+              rounded-full
 
-                font-semibold
+              bg-[#0f172a]
 
-                shadow-[0_18px_40px_rgba(15,23,42,0.14)]
+              text-white
 
-                transition-all
-                duration-300
+              text-[14px]
+              sm:text-[15px]
 
-                hover:scale-[1.03]
-                hover:bg-[#111c35]
-              "
-            >
-              Explore Products
-            </button>
-          </Link>
+              font-semibold
 
-              <button
-                onClick={() => {
-                  document
-                    .getElementById("experience")
-                    ?.scrollIntoView({
-                      behavior: "smooth",
-                    });
-                }}
-                className="
-                  h-[52px]
-                  sm:h-[56px]
+              shadow-[0_18px_40px_rgba(15,23,42,0.14)]
 
-                  px-7
-                  sm:px-8
+              transition-all
+              duration-300
 
-                  rounded-full
+              hover:scale-[1.03]
+              hover:bg-[#111c35]
+            "
+          >
+            Explore Products
+          </button>
 
-                  border
-                  border-slate-300/80
+        </Link>
 
-                  bg-white/75
-                  backdrop-blur-xl
 
-                  text-slate-600
+        {/* WATCH EXPERIENCE */}
 
-                  text-[14px]
-                  sm:text-[15px]
+        <button
+          onClick={() => {
+            document
+              .getElementById("experience")
+              ?.scrollIntoView({
+                behavior: "smooth",
+              });
+          }}
+          className="
+            h-[52px]
+            sm:h-[56px]
 
-                  font-semibold
+            px-7
+            sm:px-8
 
-                  transition-all
-                  duration-300
+            rounded-full
 
-                  hover:bg-white
-                "
-              >
-                Watch Experience
-              </button>
+            border
+            border-slate-300/80
+
+            bg-white/75
+            backdrop-blur-xl
+
+            text-slate-600
+
+            text-[14px]
+            sm:text-[15px]
+
+            font-semibold
+
+            transition-all
+            duration-300
+
+            hover:bg-white
+          "
+        >
+          Watch Experience
+        </button>
+
       </motion.div>
 
-      {/* STATS */}
+
+      {/* ==================================================
+          STATS
+      ================================================== */}
+
       <motion.div
         initial={{
           opacity: 0,
@@ -282,21 +395,64 @@ const HeroContent = () => {
           sm:mt-12
         "
       >
+
         {[
           {
-            title: "10K+",
+            end: 10,
+            suffix: "K+",
             subtitle: "Happy Customers",
           },
+
           {
-            title: "99%",
+            end: 99,
+            suffix: "%",
             subtitle: "Fabric Protection",
           },
+
           {
-            title: "24hr",
+            prefix: "UP TO",
+            end: 24,
+            suffix: "hr",
             subtitle: "Long Freshness",
           },
+
         ].map((item) => (
-          <div key={item.title}>
+
+          <div
+            key={item.subtitle}
+            className="text-left"
+          >
+
+            {/* PREMIUM PREFIX */}
+
+            {item.prefix && (
+              <span
+                className="
+                  block
+
+                  text-[8px]
+                  sm:text-[9px]
+
+                  tracking-[0.22em]
+
+                  font-semibold
+
+                  text-slate-400
+
+                  uppercase
+
+                  leading-none
+
+                  mb-1
+                "
+              >
+                {item.prefix}
+              </span>
+            )}
+
+
+            {/* ANIMATED NUMBER */}
+
             <h3
               className="
                 text-[#0f172a]
@@ -305,10 +461,24 @@ const HeroContent = () => {
 
                 text-[26px]
                 sm:text-[30px]
+
+                leading-none
+
+                tabular-nums
               "
             >
-              {item.title}
+
+              <CountUp
+                end={item.end}
+                suffix={item.suffix}
+                duration={1800}
+                repeatDelay={12000}
+              />
+
             </h3>
+
+
+            {/* SUBTITLE */}
 
             <p
               className="
@@ -317,14 +487,18 @@ const HeroContent = () => {
                 text-[11px]
                 sm:text-[13px]
 
-                mt-1
+                mt-2
               "
             >
               {item.subtitle}
             </p>
+
           </div>
+
         ))}
+
       </motion.div>
+
     </div>
   );
 };

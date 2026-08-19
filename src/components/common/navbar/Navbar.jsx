@@ -180,7 +180,7 @@ const [profileOpen, setProfileOpen] = useState(false);
                       mt-[3px]
                     "
                   >
-                    Luxury Laundry
+                    Science Simplified Laundry
                   </p>
                 </div>
               </motion.div>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom";
 const ContactCTASection = () => {
   return (
     <section className="px-6 pb-32">
@@ -63,19 +63,21 @@ const ContactCTASection = () => {
             can redefine modern living.
           </p>
 
-          <button
-            className="
-              mt-10
-              rounded-full
-              bg-white
-              px-8
-              py-4
-              font-bold
-              text-slate-950
-            "
-          >
-            Explore Luka
-          </button>
+          <Link to="/products">
+            <button
+              className="
+                mt-10
+                rounded-full
+                bg-white
+                px-8
+                py-4
+                font-bold
+                text-slate-950
+              "
+            >
+              Explore Luka
+            </button>
+          </Link>
         </div>
       </motion.div>
     </section>

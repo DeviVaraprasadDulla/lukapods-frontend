@@ -18,6 +18,7 @@ import dissolveImg from "@/assets/images/features/quick-dissolve.jpeg";
 const features = [
   {
     title: "Deep Cleaning",
+    badge: "Powerful Cleaning",
     description:
       "Powerful stain removal engineered to preserve softness and premium fabric quality.",
     image: deepCleaningImg,
@@ -27,6 +28,7 @@ const features = [
 
   {
     title: "Luxury Fragrance",
+    badge: "Thoughtful Care",
     description:
       "Elegant freshness inspired by luxury fabric perfumes and modern care.",
     image: fragranceImg,
@@ -36,6 +38,7 @@ const features = [
 
   {
     title: "Fabric Protection",
+    badge: "Fabric Care",
     description:
       "Advanced protection layer designed for delicate and premium fabrics.",
     image: protectionImg,
@@ -45,6 +48,7 @@ const features = [
 
   {
     title: "Quick Dissolve",
+    badge: "Intelligent Care",
     description:
       "Fast dissolving pods for smooth and residue-free washing experience.",
     image: dissolveImg,
@@ -54,6 +58,7 @@ const features = [
 
   {
     title: "Eco Friendly",
+    badge: "Everyday Care",
     description:
       "Modern cleaning technology with eco-conscious premium performance.",
     image: ecoImg,
@@ -528,7 +533,7 @@ const PremiumFeaturesSection = () => {
                           text-slate-600
                         "
                       >
-                        Premium Care
+                        {feature.badge}
                       </span>
                     </div>
                   </div>
@@ -576,43 +581,6 @@ const PremiumFeaturesSection = () => {
                     >
                       {feature.description}
                     </p>
-
-                    <motion.button
-                      whileHover={{
-                        x: 4,
-                      }}
-                      transition={{
-                        duration: 0.3,
-                      }}
-                      className="
-                        mt-7
-                        inline-flex
-                        items-center
-                        gap-3
-                        px-5
-                        py-3
-                        rounded-full
-                        border
-                        border-white/15
-                        bg-white/10
-                        backdrop-blur-2xl
-                        text-cyan-300
-                        text-[14px]
-                        font-semibold
-                        shadow-[0_10px_30px_rgba(15,23,42,0.12)]
-                      "
-                    >
-                      Explore Feature
-                      <ArrowUpRight
-                        size={16}
-                        className="
-                          transition-transform
-                          duration-500
-                          group-hover:translate-x-1
-                          group-hover:-translate-y-1
-                        "
-                      />
-                    </motion.button>
                   </div>
                 </div>
 
