@@ -6,7 +6,7 @@ import AboutFloatingParticles from "@/components/common/about/AboutFloatingParti
 
 const WhoWeAreSection = () => {
   return (
-    <section className="relative overflow-hidden bg-[#f4f8fb] pt-32 pb-24 lg:pt-40 lg:pb-32">
+    <section className="relative overflow-hidden bg-[#f4f8fb] pt-8 pb-24 lg:pt-12 lg:pb-32">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.14),transparent_38%)]" />
@@ -19,21 +19,6 @@ const WhoWeAreSection = () => {
       <AboutFloatingParticles />
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-6 lg:px-10">
-        {/* Section Kicker */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-12 flex items-center gap-4 lg:mb-16"
-        >
-          <span className="h-px w-10 bg-slate-300" />
-
-          <span className="text-xs font-semibold uppercase tracking-[0.4em] text-slate-400">
-            Who We Are
-          </span>
-        </motion.div>
-
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
           {/* LEFT CONTENT */}
           <motion.div
