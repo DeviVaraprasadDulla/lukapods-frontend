@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles, Globe2, Rocket } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import AboutFloatingParticles from "@/components/common/about/AboutFloatingParticles";
 
@@ -78,7 +78,7 @@ const AboutCTASection = () => {
                 text-white/80
               "
             >
-              Join The Future Of Luka
+              Our Journey Continues
             </span>
           </div>
 
@@ -98,12 +98,10 @@ const AboutCTASection = () => {
                   lg:text-[7rem]
                 "
               >
-                Building
-                <br />
-                <span className="text-white/45">globally inspired</span>
+                And We’re Just
                 <br />
                 <span className="bg-gradient-to-r from-cyan-300 via-sky-400 to-cyan-500 bg-clip-text text-transparent">
-                  household innovation.
+                  Getting Started.
                 </span>
               </h2>
 
@@ -116,69 +114,10 @@ const AboutCTASection = () => {
                   text-white/70
                 "
               >
-                Luka is reimagining home essentials through formulation science,
-                modern product thinking, and globally inspired innovation. We’re
-                building experiences that feel premium, intentional, and
-                future-ready.
+                Laundry is where our journey began. Luka is building a new
+                generation of simple, effective home-care products for modern
+                households.
               </p>
-
-              {/* Features */}
-              <div className="mt-12 flex flex-wrap gap-4">
-                {[
-                  {
-                    icon: Globe2,
-                    label: "Global Innovation",
-                  },
-                  {
-                    icon: Sparkles,
-                    label: "Premium Experiences",
-                  },
-                  {
-                    icon: Rocket,
-                    label: "Future-Driven Vision",
-                  },
-                ].map((item, index) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <motion.div
-                      key={index}
-                      whileHover={{
-                        y: -4,
-                      }}
-                      className="
-                        flex items-center gap-3
-                        rounded-2xl
-                        border border-white/10
-                        bg-white/5
-                        px-5 py-4
-                        backdrop-blur-md
-                      "
-                    >
-                      <div
-                        className="
-                          flex h-10 w-10
-                          items-center justify-center
-                          rounded-xl
-                          bg-cyan-400/10
-                        "
-                      >
-                        <Icon size={18} className="text-cyan-300" />
-                      </div>
-
-                      <span
-                        className="
-                          text-sm
-                          font-semibold
-                          text-white/85
-                        "
-                      >
-                        {item.label}
-                      </span>
-                    </motion.div>
-                  );
-                })}
-              </div>
             </div>
 
             {/* RIGHT CARD */}
@@ -208,7 +147,7 @@ const AboutCTASection = () => {
                     text-cyan-300
                   "
                 >
-                  Let’s Build The Future
+                  What’s Next
                 </p>
 
                 <h3
@@ -221,10 +160,8 @@ const AboutCTASection = () => {
                     text-white
                   "
                 >
-                  Innovation
-                  <br />
-                  starts with
-                  <span className="text-cyan-400"> curiosity.</span>
+                  More home-care,
+                  <span className="text-cyan-400"> thoughtfully made.</span>
                 </h3>
 
                 <p
@@ -235,8 +172,8 @@ const AboutCTASection = () => {
                     text-white/65
                   "
                 >
-                  Luka continues to evolve through collaboration,
-                  experimentation, and science-led product development.
+                  We’re expanding beyond laundry — always led by simplicity
+                  and care.
                 </p>
 
                 {/* Buttons */}
