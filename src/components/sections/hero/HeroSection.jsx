@@ -11,9 +11,9 @@ const HeroSection = () => {
         relative
         overflow-hidden
 
-        pt-[118px]
-        sm:pt-[128px]
-        lg:pt-[138px]
+        pt-6
+        sm:pt-8
+        lg:pt-10
 
         pb-16
         sm:pb-20
