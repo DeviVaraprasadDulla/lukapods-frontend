@@ -12,7 +12,17 @@ const [currentVideo, setCurrentVideo] = useState(0);
   const rotateX = useTransform(mouseY, [-100, 100], [6, -6]);
   const rotateY = useTransform(mouseX, [-100, 100], [-6, 6]);
   const [showReelCTA, setShowReelCTA] = useState(false);
+useEffect(() => {
+  const video = videoRef.current;
 
+  if (!video) return;
+
+  video.load();
+
+  video.play().catch((error) => {
+    console.log("Video autoplay prevented:", error);
+  });
+}, [currentVideo]);
 useEffect(() => {
   const timer = setTimeout(() => {
     setShowReelCTA(true);
@@ -491,12 +501,17 @@ const toggleSound = () => {
               <video
                 key={currentVideo}
                 ref={videoRef}
-                autoPlay
                 muted={isMuted}
                 playsInline
+                autoPlay
                 onEnded={() => {
                   setCurrentVideo((prev) => (prev === 0 ? 1 : 0));
                 }}
+                src={
+                  currentVideo === 0
+                    ? "/videos/luxury-wash.mp4"
+                    : "/videos/lukavideo2.mp4"
+                }
                 className="
                   w-full
                   h-[260px]
@@ -508,16 +523,7 @@ const toggleSound = () => {
                   ease-out
                   group-hover:scale-[1.05]
                 "
-              >
-                <source
-                  src={
-                    currentVideo === 0
-                      ? "/videos/luxury-wash.mp4"
-                      : "/videos/lukavideo2.mp4"
-                  }
-                  type="video/mp4"
-                />
-              </video>
+              />
              
               {/* VIDEO OVERLAY */}
             <div
