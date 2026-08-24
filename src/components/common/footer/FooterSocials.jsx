@@ -9,16 +9,16 @@ import {
 const socials = [
   {
     icon: FaInstagram,
-    link: "#",
+    link: "https://www.instagram.com/lukahomeessentials?igsi=dDV0ZjRyNDd0emk%3D&utm_source=qr",
   },
   {
     icon: FaLinkedinIn,
-    link: "#",
+    link: "https://www.linkedin.com/company/luka-home-essentials/",
   },
-  {
-    icon: FaXTwitter,
-    link: "#",
-  },
+  // {
+  //   icon: FaXTwitter,
+  //   link: "#",
+  // },
 ];
 
 const FooterSocials = () => {

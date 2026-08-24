@@ -1,13 +1,40 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Play, ArrowUpRight, Sparkles, ShieldCheck } from "lucide-react";
-
+import { useEffect, useState } from "react";
+import { useRef } from "react";
+import { Volume2, VolumeX } from "lucide-react";
 const VideoExperienceSection = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+
+const [currentVideo, setCurrentVideo] = useState(0);
   const rotateX = useTransform(mouseY, [-100, 100], [6, -6]);
   const rotateY = useTransform(mouseX, [-100, 100], [-6, 6]);
+  const [showReelCTA, setShowReelCTA] = useState(false);
 
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setShowReelCTA(true);
+  }, 10000);
+
+  return () => clearTimeout(timer);
+}, []);
+const videoRef = useRef(null);
+const [isMuted, setIsMuted] = useState(true);
+
+const toggleSound = () => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  video.muted = !video.muted;
+  setIsMuted(video.muted);
+
+  if (!video.muted) {
+    video.volume = 1;
+    video.play();
+  }
+};
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
@@ -459,11 +486,17 @@ const VideoExperienceSection = () => {
               />
 
               {/* VIDEO */}
+              {/* VIDEO */}
+              {/* VIDEO */}
               <video
+                key={currentVideo}
+                ref={videoRef}
                 autoPlay
-                muted
-                loop
+                muted={isMuted}
                 playsInline
+                onEnded={() => {
+                  setCurrentVideo((prev) => (prev === 0 ? 1 : 0));
+                }}
                 className="
                   w-full
                   h-[260px]
@@ -476,20 +509,28 @@ const VideoExperienceSection = () => {
                   group-hover:scale-[1.05]
                 "
               >
-                <source src="/videos/luxury-wash.mp4" type="video/mp4" />
+                <source
+                  src={
+                    currentVideo === 0
+                      ? "/videos/luxury-wash.mp4"
+                      : "/videos/lukavideo2.mp4"
+                  }
+                  type="video/mp4"
+                />
               </video>
-
+             
               {/* VIDEO OVERLAY */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  bg-gradient-to-t
-                  from-[#020617]/45
-                  via-transparent
-                  to-transparent
-                "
-              />
+            <div
+              className="
+                absolute
+                inset-0
+                pointer-events-none
+                bg-gradient-to-t
+                from-[#020617]/45
+                via-transparent
+                to-transparent
+              "
+            />
 
               {/* MOVING LIGHT EFFECT */}
               <motion.div
@@ -514,67 +555,33 @@ const VideoExperienceSection = () => {
                   via-white/20
                   to-transparent
                   blur-2xl
+                  pointer-events-none
                 "
               />
 
               {/* CENTER PLAY BUTTON */}
-              <div
-                className="
-                  absolute
-                  inset-0
-                  flex
-                  items-center
-                  justify-center
-                "
-              >
-                <motion.div
-                  whileHover={{
-                    scale: 1.08,
-                  }}
-                  animate={{
-                    y: [0, -6, 0],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
+              <div className="absolute top-5 right-5 z-[60]">
+                <button
+                  onClick={toggleSound}
                   className="
-                    relative
+                    w-12
+                    h-12
+                    rounded-full
+                    bg-black/50
+                    backdrop-blur-xl
+                    border
+                    border-white/20
                     flex
                     items-center
                     justify-center
-                    w-20
-                    h-20
-                    rounded-full
-                    bg-white/10
-                    backdrop-blur-xl
-                    ring-1
-                    ring-white/20
-                    shadow-[0_0_60px_rgba(255,255,255,0.18)]
+                    text-white
+                    hover:bg-black/70
+                    transition-all
+                    duration-300
                   "
                 >
-                  {/* RIPPLE */}
-                  <motion.div
-                    animate={{
-                      scale: [1, 1.7],
-                      opacity: [0.5, 0],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                    }}
-                    className="
-                      absolute
-                      inset-0
-                      rounded-full
-                      border
-                      border-white/20
-                    "
-                  />
-
-                  <Play size={28} fill="white" className="text-white ml-1" />
-                </motion.div>
+                  {isMuted ? <VolumeX size={22} /> : <Volume2 size={22} />}
+                </button>
               </div>
 
               {/* BOTTOM CONTENT */}
@@ -649,78 +656,7 @@ const VideoExperienceSection = () => {
                   </div>
 
                   {/* MINI CARD */}
-                  <motion.div
-                    animate={{
-                      y: [0, -5, 0],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="
-                      hidden
-                      md:flex
-                      flex-col
-                      gap-3
-                      px-5
-                      py-4
-                      rounded-[26px]
-                      bg-white/[0.05]
-                      backdrop-blur-xl
-                      ring-1
-                      ring-white/10
-                      min-w-[150px]
-                    "
-                  >
-                    <span
-                      className="
-                        text-[11px]
-                        uppercase
-                        tracking-[2px]
-                        text-slate-400
-                      "
-                    >
-                      Protection
-                    </span>
-
-                    <div
-                      className="
-                        h-1.5
-                        rounded-full
-                        bg-white/10
-                        overflow-hidden
-                      "
-                    >
-                      <motion.div
-                        animate={{
-                          width: ["0%", "96%"],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                        className="
-                          h-full
-                          rounded-full
-                          bg-gradient-to-r
-                          from-cyan-400
-                          to-blue-400
-                        "
-                      />
-                    </div>
-
-                    <p
-                      className="
-                        text-3xl
-                        font-black
-                        text-white
-                      "
-                    >
-                      99%
-                    </p>
-                  </motion.div>
+                  
                 </div>
               </div>
             </div>

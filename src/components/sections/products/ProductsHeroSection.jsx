@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Sparkles, Package, ShieldCheck } from "lucide-react";
+import { Sparkles, Package, ShieldCheck, Globe, HandHeart, Handshake } from "lucide-react";
 
 const ProductsHeroSection = () => {
   return (
@@ -269,7 +269,7 @@ const ProductsHeroSection = () => {
                 p-5
               "
             >
-              <Package
+              <Handshake
                 size={20}
                 className="
                   text-cyan-500
@@ -277,27 +277,24 @@ const ProductsHeroSection = () => {
               />
 
               <h3
-                className="
-                  mt-3
+              className="
+                mt-3
+                text-2xl
+                font-black
+                text-[#020817]
+              "
+            >
+              India Wide
+            </h3>
 
-                  text-2xl
-                  font-black
-
-                  text-[#020817]
-                "
-              >
-                10+
-              </h3>
-
-              <p
-                className="
-                  text-sm
-
-                  text-slate-500
-                "
-              >
-                Premium Products
-              </p>
+            <p
+              className="
+                text-sm
+                text-slate-500
+              "
+            >
+              Serving Across India
+            </p>
             </div>
 
             <div
@@ -376,7 +373,7 @@ const ProductsHeroSection = () => {
                   text-[#020817]
                 "
               >
-                Premium
+                Cleaner Clothes
               </h3>
 
               <p

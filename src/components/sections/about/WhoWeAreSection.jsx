@@ -87,14 +87,7 @@ const WhoWeAreSection = () => {
             {/* Body Copy */}
             <div className="mt-8 max-w-xl space-y-6">
               <p className="text-lg leading-9 text-slate-600 lg:text-[19px]">
-                Luka was created with a simple belief: everyday home care
-                should be effective, effortless, and thoughtfully designed.
-              </p>
-
-              <p className="text-lg leading-9 text-slate-600 lg:text-[19px]">
-                We combine formulation science with modern design to create
-                products that make everyday routines simpler—starting with
-                laundry.
+                We combine the science of formulation with modern design to create products that simplify daily tasks starting with washing your clothes while keeping them looking new.
               </p>
             </div>
           </motion.div>
