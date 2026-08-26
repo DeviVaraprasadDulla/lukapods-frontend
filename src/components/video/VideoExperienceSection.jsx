@@ -85,6 +85,13 @@ const VideoCard = ({
             }
           }}
           onEnded={() => {
+            const video = videoRef.current;
+
+            if (video) {
+              video.pause();
+              video.currentTime = 0;
+            }
+
             if (activeVideo === videoIndex) {
               onPause();
             }
