@@ -110,48 +110,46 @@ const VideoCard = ({
         />
 
         {/* PLAY / PAUSE */}
-        <button
-          type="button"
-          onClick={togglePlay}
-          aria-label={
-            isPlaying
-              ? `Pause ${title} ${subtitle}`
-              : `Play ${title} ${subtitle}`
-          }
-          className="
-            absolute
-            left-1/2
-            top-1/2
-            -translate-x-1/2
-            -translate-y-1/2
-            w-16
-            h-16
-            rounded-full
-            bg-white
-            text-black
-            flex
-            items-center
-            justify-center
-            shadow-xl
-            transition-all
-            duration-300
-            hover:scale-110
-            z-20
-          "
-        >
-          {isPlaying ? (
-            <Pause
-              size={24}
-              fill="currentColor"
-            />
-          ) : (
-            <Play
-              size={24}
-              fill="currentColor"
-              className="ml-1"
-            />
-          )}
-        </button>
+          <button
+            type="button"
+            onClick={togglePlay}
+            aria-label={
+              isPlaying
+                ? `Pause ${title} ${subtitle}`
+                : `Play ${title} ${subtitle}`
+            }
+            className="
+              absolute
+              bottom-5
+              right-5
+              w-14
+              h-14
+              rounded-full
+              bg-white
+              text-black
+              flex
+              items-center
+              justify-center
+              shadow-xl
+              transition-all
+              duration-300
+              hover:scale-110
+              z-20
+            "
+          >
+            {isPlaying ? (
+              <Pause
+                size={22}
+                fill="currentColor"
+              />
+            ) : (
+              <Play
+                size={22}
+                fill="currentColor"
+                className="ml-1"
+              />
+            )}
+          </button>
 
         {/* SOUND */}
         {isPlaying && (
@@ -186,17 +184,7 @@ const VideoCard = ({
         )}
 
         {/* TEXT */}
-        <div className="absolute left-6 bottom-6 pointer-events-none z-10">
-          <div className="rounded-full bg-black/40 backdrop-blur-md px-4 py-2">
-            <p className="text-white font-bold text-lg">
-              {title}
-            </p>
 
-            <p className="text-cyan-300 font-bold text-lg">
-              {subtitle}
-            </p>
-          </div>
-        </div>
 
       </div>
     </div>
