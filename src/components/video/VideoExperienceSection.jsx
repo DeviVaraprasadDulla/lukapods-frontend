@@ -1,28 +1,217 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { Play, ArrowUpRight, Sparkles, ShieldCheck } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useRef } from "react";
-import { Volume2, VolumeX } from "lucide-react";
+import {
+  Play,
+  Pause,
+  ArrowUpRight,
+  Sparkles,
+  ShieldCheck,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+const VideoCard = ({
+  src,
+  title,
+  subtitle,
+  videoIndex,
+  activeVideo,
+  onPlay,
+  onPause,
+}) => {
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(false);
+
+  const isPlaying = activeVideo === videoIndex;
+
+    useEffect(() => {
+      const video = videoRef.current;
+
+      if (!video) return;
+
+      if (activeVideo !== videoIndex && !video.paused) {
+        video.pause();
+      }
+    }, [activeVideo, videoIndex]);
+  const togglePlay = async () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    if (video.paused) {
+      video.muted = false;
+      video.volume = 1;
+
+      try {
+        await video.play();
+        onPlay(videoIndex);
+      } catch (error) {
+        console.error("Unable to play video:", error);
+      }
+    } else {
+      video.pause();
+    }
+  };
+
+  const toggleSound = () => {
+    const video = videoRef.current;
+
+    if (!video) return;
+
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+
+    if (!video.muted) {
+      video.volume = 1;
+    }
+  };
+
+  return (
+    <div className="relative flex-none w-[85%] sm:w-[70%] lg:w-[75%] snap-center">
+      <div className="group relative overflow-hidden rounded-[32px] bg-black">
+
+        {/* VIDEO */}
+        <video
+          ref={videoRef}
+          src={src}
+          playsInline
+          preload="metadata"
+          muted={isMuted}
+          onPlay={() => {
+            onPlay(videoIndex);
+          }}
+          onPause={() => {
+            if (activeVideo === videoIndex) {
+              onPause();
+            }
+          }}
+          onEnded={() => {
+            if (activeVideo === videoIndex) {
+              onPause();
+            }
+          }}
+          className="
+            w-full
+            h-[260px]
+            sm:h-[340px]
+            lg:h-[400px]
+            object-cover
+            transition-transform
+            duration-[4000ms]
+            ease-out
+            group-hover:scale-[1.05]
+          "
+        />
+
+        {/* PLAY / PAUSE */}
+        <button
+          type="button"
+          onClick={togglePlay}
+          aria-label={
+            isPlaying
+              ? `Pause ${title} ${subtitle}`
+              : `Play ${title} ${subtitle}`
+          }
+          className="
+            absolute
+            left-1/2
+            top-1/2
+            -translate-x-1/2
+            -translate-y-1/2
+            w-16
+            h-16
+            rounded-full
+            bg-white
+            text-black
+            flex
+            items-center
+            justify-center
+            shadow-xl
+            transition-all
+            duration-300
+            hover:scale-110
+            z-20
+          "
+        >
+          {isPlaying ? (
+            <Pause
+              size={24}
+              fill="currentColor"
+            />
+          ) : (
+            <Play
+              size={24}
+              fill="currentColor"
+              className="ml-1"
+            />
+          )}
+        </button>
+
+        {/* SOUND */}
+        {isPlaying && (
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-label={isMuted ? "Unmute video" : "Mute video"}
+            className="
+              absolute
+              top-5
+              right-5
+              z-20
+              w-11
+              h-11
+              rounded-full
+              bg-black/50
+              backdrop-blur-md
+              text-white
+              flex
+              items-center
+              justify-center
+              transition
+              hover:bg-black/70
+            "
+          >
+            {isMuted ? (
+              <VolumeX size={20} />
+            ) : (
+              <Volume2 size={20} />
+            )}
+          </button>
+        )}
+
+        {/* TEXT */}
+        <div className="absolute left-6 bottom-6 pointer-events-none z-10">
+          <div className="rounded-full bg-black/40 backdrop-blur-md px-4 py-2">
+            <p className="text-white font-bold text-lg">
+              {title}
+            </p>
+
+            <p className="text-cyan-300 font-bold text-lg">
+              {subtitle}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+};
 const VideoExperienceSection = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
+  const [activeVideo, setActiveVideo] = useState(null);
 
-const [currentVideo, setCurrentVideo] = useState(0);
+  const handleVideoPlay = (index) => {
+    setActiveVideo(index);
+  };
+  const handleVideoPause = () => {
+  setActiveVideo(null);
+};
+
   const rotateX = useTransform(mouseY, [-100, 100], [6, -6]);
   const rotateY = useTransform(mouseX, [-100, 100], [-6, 6]);
   const [showReelCTA, setShowReelCTA] = useState(false);
-useEffect(() => {
-  const video = videoRef.current;
 
-  if (!video) return;
-
-  video.load();
-
-  video.play().catch((error) => {
-    console.log("Video autoplay prevented:", error);
-  });
-}, [currentVideo]);
 useEffect(() => {
   const timer = setTimeout(() => {
     setShowReelCTA(true);
@@ -30,21 +219,18 @@ useEffect(() => {
 
   return () => clearTimeout(timer);
 }, []);
-const videoRef = useRef(null);
-const [isMuted, setIsMuted] = useState(true);
-
-const toggleSound = () => {
-  const video = videoRef.current;
-  if (!video) return;
-
-  video.muted = !video.muted;
-  setIsMuted(video.muted);
-
-  if (!video.muted) {
-    video.volume = 1;
-    video.play();
-  }
-};
+const videos = [
+  {
+    src: "/videos/luxury-wash.mp4",
+    title: "Washing",
+    subtitle: "Reimagined",
+  },
+  {
+    src: "/videos/lukavideo2.mp4",
+    title: "Premium",
+    subtitle: "Care",
+  },
+];
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
 
@@ -498,32 +684,32 @@ const toggleSound = () => {
               {/* VIDEO */}
               {/* VIDEO */}
               {/* VIDEO */}
-              <video
-                key={currentVideo}
-                ref={videoRef}
-                muted={isMuted}
-                playsInline
-                autoPlay
-                onEnded={() => {
-                  setCurrentVideo((prev) => (prev === 0 ? 1 : 0));
-                }}
-                src={
-                  currentVideo === 0
-                    ? "/videos/luxury-wash.mp4"
-                    : "/videos/lukavideo2.mp4"
-                }
+              <div className="w-full overflow-hidden">
+              <div
                 className="
-                  w-full
-                  h-[260px]
-                  sm:h-[340px]
-                  lg:h-[400px]
-                  object-cover
-                  transition-transform
-                  duration-[4000ms]
-                  ease-out
-                  group-hover:scale-[1.05]
+                  flex
+                  gap-6
+                  overflow-x-auto
+                  snap-x
+                  snap-mandatory
+                  pb-4
+                  scrollbar-hide
                 "
-              />
+              >
+           {videos.map((video, index) => (
+            <VideoCard
+              key={video.src}
+              src={video.src}
+              title={video.title}
+              subtitle={video.subtitle}
+              videoIndex={index}
+              activeVideo={activeVideo}
+              onPlay={handleVideoPlay}
+              onPause={handleVideoPause}
+            />
+          ))}
+              </div>
+            </div>
              
               {/* VIDEO OVERLAY */}
             <div
@@ -565,106 +751,9 @@ const toggleSound = () => {
                 "
               />
 
-              {/* CENTER PLAY BUTTON */}
-              <div className="absolute top-5 right-5 z-[60]">
-                <button
-                  onClick={toggleSound}
-                  className="
-                    w-12
-                    h-12
-                    rounded-full
-                    bg-black/50
-                    backdrop-blur-xl
-                    border
-                    border-white/20
-                    flex
-                    items-center
-                    justify-center
-                    text-white
-                    hover:bg-black/70
-                    transition-all
-                    duration-300
-                  "
-                >
-                  {isMuted ? <VolumeX size={22} /> : <Volume2 size={22} />}
-                </button>
-              </div>
+              
 
-              {/* BOTTOM CONTENT */}
-              <div
-                className="
-                  absolute
-                  bottom-0
-                  left-0
-                  w-full
-                  p-6
-                  sm:p-7
-                "
-              >
-                <div
-                  className="
-                    flex
-                    items-end
-                    justify-between
-                    gap-4
-                  "
-                >
-                  <div>
-                    <div
-                      className="
-                        inline-flex
-                        items-center
-                        gap-2
-                        px-4
-                        py-2
-                        rounded-full
-                        bg-white/[0.08]
-                        backdrop-blur-xl
-                        ring-1
-                        ring-white/10
-                      "
-                    >
-                      <div
-                        className="
-                          w-2
-                          h-2
-                          rounded-full
-                          bg-cyan-400
-                        "
-                      />
-
-                      <span
-                        className="
-                          text-[10px]
-                          uppercase
-                          tracking-[2px]
-                          font-semibold
-                          text-slate-200
-                        "
-                      >
-                        Premium Care
-                      </span>
-                    </div>
-
-                    <h3
-                      className="
-                        mt-4
-                        text-2xl
-                        sm:text-3xl
-                        font-black
-                        tracking-[-1px]
-                        text-white
-                      "
-                    >
-                      Washing
-                      <span className="block text-cyan-300">Reimagined</span>
-                    </h3>
-                  </div>
-
-                  {/* MINI CARD */}
-                  
-                </div>
-              </div>
+            
             </div>
           </motion.div>
         </div>
