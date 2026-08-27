@@ -31,14 +31,7 @@ const useProductData = (product) => {
     };
   }, [product]);
 };
-const handleNavigate = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "instant",
-  });
 
-  onNavigate();
-};
 const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
   const {
     primaryImage,
@@ -89,18 +82,8 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
         </header>
 
         {/* HERO VISUAL AREA */}
-<motion.button
-onClick={onNavigate}
-  whileHover={{ scale: 1.01 }}
-  transition={{ duration: 0.3 }}
-  role="link"
-  tabIndex={0}
-  onKeyDown={(e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onNavigate();
-    }
-  }}
+{/* HERO VISUAL AREA */}
+<div
   className="
     relative
     mt-5
@@ -116,105 +99,104 @@ onClick={onNavigate}
     flex
     items-center
     justify-center
-    cursor-pointer
   "
->  
-    {/* Ambient glow — single, slow, restrained */}
-          <div className="absolute w-[200px] h-[200px] rounded-full bg-cyan-300/15 blur-[70px] pointer-events-none transition-opacity duration-700 opacity-60 group-hover:opacity-100" />
+>
+  {/* Ambient glow */}
+  <div className="absolute w-[200px] h-[200px] rounded-full bg-cyan-300/15 blur-[70px] pointer-events-none transition-opacity duration-700 opacity-60 group-hover:opacity-100" />
 
-          {/* ASSET CANVAS PACKAGING */}
-          {/* ASSET CANVAS PACKAGING */}
-          <div className="relative z-20 w-full h-full flex items-center justify-center pointer-events-none">
-            {/* PRIMARY IMAGE */}
-            <motion.img
-              whileHover={{ scale: secondaryImage ? 1 : 1.04 }}
-              transition={{ duration: 0.5 }}
-              src={primaryImage}
-              alt={product?.name || "Product Image"}
-              loading="lazy"
-              className={`
-                absolute
-                inset-0
-                w-full
-                h-full
-                object-cover
-                transition-all
-                duration-700
-                ${
-                  secondaryImage
-                    ? "opacity-100 group-hover:opacity-0 scale-100 group-hover:scale-105"
-                    : "opacity-100 group-hover:scale-105"
-                }
-              `}
-            />
+  {/* ASSET CANVAS */}
+  <div className="relative z-20 w-full h-full flex items-center justify-center pointer-events-none">
 
-            {/* SECONDARY IMAGE */}
-            {secondaryImage && (
-              <motion.img
-                whileHover={{ scale: 1.04 }}
-                transition={{ duration: 0.5 }}
-                src={secondaryImage}
-                alt={`${product?.name || "Product"} Alternate Detail`}
-                loading="lazy"
-                className="
-                  absolute
-                  inset-0
-                  w-full
-                  h-full
-                  object-cover
-                  opacity-0
-                  group-hover:opacity-100
-                  scale-95
-                  group-hover:scale-100
-                  transition-all
-                  duration-700
-                "
-              />
-            )}
-          </div>
+    {/* PRIMARY IMAGE */}
+    <motion.img
+      whileHover={{ scale: secondaryImage ? 1 : 1.04 }}
+      transition={{ duration: 0.5 }}
+      src={primaryImage}
+      alt={product?.name || "Product Image"}
+      loading="lazy"
+      className={`
+        absolute
+        inset-0
+        w-full
+        h-full
+        object-cover
+        transition-all
+        duration-700
+        ${
+          secondaryImage
+            ? "opacity-100 group-hover:opacity-0 scale-100 group-hover:scale-105"
+            : "opacity-100 group-hover:scale-105"
+        }
+      `}
+    />
 
-          {/* QUICK ADD — reveals on hover for a calmer resting state */}
-          {!isOutOfStock && (
-            <motion.button
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={(e) => {
-                e.stopPropagation();
-                onQuickAdd();
-              }}
-              className="
-                absolute
-                bottom-4
-                left-1/2
-                -translate-x-1/2
-                h-[44px]
-                px-5
-                rounded-full
-                bg-[#020817]
-                text-white
-                text-[13px]
-                font-semibold
-                flex
-                items-center
-                gap-2
-                shadow-[0_15px_40px_rgba(2,8,23,0.20)]
-                whitespace-nowrap
-                z-30
-                opacity-0
-                translate-y-3
-                transition-all
-                duration-400
-                group-hover:opacity-100
-                group-hover:translate-y-0
-                focus-visible:opacity-100
-                focus-visible:translate-y-0
-              "
-            >
-              <ShoppingBag size={14} />
-              Quick Add
-            </motion.button>
-          )}
-        </motion.button>
+    {/* SECONDARY IMAGE */}
+    {secondaryImage && (
+      <motion.img
+        whileHover={{ scale: 1.04 }}
+        transition={{ duration: 0.5 }}
+        src={secondaryImage}
+        alt={`${product?.name || "Product"} Alternate Detail`}
+        loading="lazy"
+        className="
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          opacity-0
+          group-hover:opacity-100
+          scale-95
+          group-hover:scale-100
+          transition-all
+          duration-700
+        "
+      />
+    )}
+  </div>
+
+  {/* QUICK ADD */}
+  {!isOutOfStock && (
+    <motion.button
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
+      onClick={(e) => {
+        e.stopPropagation();
+        onQuickAdd();
+      }}
+      className="
+        absolute
+        bottom-4
+        left-1/2
+        -translate-x-1/2
+        h-[44px]
+        px-5
+        rounded-full
+        bg-[#020817]
+        text-white
+        text-[13px]
+        font-semibold
+        flex
+        items-center
+        gap-2
+        shadow-[0_15px_40px_rgba(2,8,23,0.20)]
+        whitespace-nowrap
+        z-30
+        opacity-0
+        translate-y-3
+        transition-all
+        duration-400
+        group-hover:opacity-100
+        group-hover:translate-y-0
+        focus-visible:opacity-100
+        focus-visible:translate-y-0
+      "
+    >
+      <ShoppingBag size={14} />
+      Quick Add
+    </motion.button>
+  )}
+</div>
 
         {/* DETAILS CONTAINER */}
         <div className="mt-6 flex flex-col flex-grow">
