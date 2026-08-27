@@ -11,6 +11,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 const VideoCard = ({
   src,
+  poster,
   title,
   subtitle,
   videoIndex,
@@ -32,25 +33,22 @@ const VideoCard = ({
         video.pause();
       }
     }, [activeVideo, videoIndex]);
-  const togglePlay = async () => {
-    const video = videoRef.current;
+ const togglePlay = async () => {
+  const video = videoRef.current;
 
-    if (!video) return;
+  if (!video) return;
 
-    if (video.paused) {
-      video.muted = false;
-      video.volume = 1;
-
-      try {
-        await video.play();
-        onPlay(videoIndex);
-      } catch (error) {
-        console.error("Unable to play video:", error);
-      }
-    } else {
-      video.pause();
+  if (video.paused) {
+    try {
+      await video.play();
+      onPlay(videoIndex);
+    } catch (error) {
+      console.error("Unable to play video:", error);
     }
-  };
+  } else {
+    video.pause();
+  }
+};
 
   const toggleSound = () => {
     const video = videoRef.current;
@@ -75,6 +73,7 @@ const VideoCard = ({
           src={src}
           playsInline
           preload="metadata"
+          poster={poster}
           muted={isMuted}
           onPlay={() => {
             onPlay(videoIndex);
@@ -88,7 +87,6 @@ const VideoCard = ({
             const video = videoRef.current;
 
             if (video) {
-              video.pause();
               video.currentTime = 0;
             }
 
@@ -108,7 +106,6 @@ const VideoCard = ({
             group-hover:scale-[1.05]
           "
         />
-
         {/* PLAY / PAUSE */}
           <button
             type="button"
@@ -217,11 +214,13 @@ useEffect(() => {
 const videos = [
   {
     src: "/videos/luxury-wash.mp4",
+    poster: "/images/lukavid1poster.png",
     title: "Washing",
     subtitle: "Reimagined",
   },
   {
     src: "/videos/lukavideo2.mp4",
+    poster: "/images/lukavid2-poster.png",
     title: "Premium",
     subtitle: "Care",
   },
@@ -418,7 +417,7 @@ const videos = [
                 text-white
               "
             >
-              A Premium
+              LUKA
               <span
                 className="
                   block
@@ -430,7 +429,7 @@ const videos = [
                   to-cyan-300
                 "
               >
-                Laundry Story
+                Loved by People
               </span>
             </h2>
 
@@ -695,6 +694,7 @@ const videos = [
             <VideoCard
               key={video.src}
               src={video.src}
+              poster={video.poster}
               title={video.title}
               subtitle={video.subtitle}
               videoIndex={index}

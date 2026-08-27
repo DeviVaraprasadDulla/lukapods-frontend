@@ -74,8 +74,14 @@ const handleBuyNow = async () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  whileHover={{ scale: 1.04 }}
-                  className="w-full h-[320px] sm:h-[420px] lg:h-[500px] object-contain p-5 lg:p-8"
+                  whileHover={{ scale: 1.03 }}
+                  className="
+                    w-full
+                    h-[320px]
+                    sm:h-[420px]
+                    lg:h-[500px]
+                    object-cover
+                  "
                 />
               </AnimatePresence>
             </motion.div>
@@ -122,7 +128,7 @@ const handleBuyNow = async () => {
               {product?.name}
             </h1>
 
-            <div className="mt-4 flex items-center gap-3 flex-wrap">
+            {/* <div className="mt-4 flex items-center gap-3 flex-wrap">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -138,7 +144,7 @@ const handleBuyNow = async () => {
                 <span>•</span>
                 <span>{product?.review_count || 0} Reviews</span>
               </div>
-            </div>
+            </div> */}
 
             <p className="mt-5 text-[15px] sm:text-base leading-relaxed text-slate-500">
               {product?.short_description}
@@ -158,9 +164,9 @@ const handleBuyNow = async () => {
               </span>
             </div>
 
-            <div className="mt-5 inline-flex px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 font-semibold">
+            {/* <div className="mt-5 inline-flex px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 font-semibold">
               In Stock ({product?.stock})
-            </div>
+            </div> */}
 
             <div className="mt-8 grid grid-cols-2 gap-3">
               {[

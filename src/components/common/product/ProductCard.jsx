@@ -31,7 +31,14 @@ const useProductData = (product) => {
     };
   }, [product]);
 };
+const handleNavigate = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "instant",
+  });
 
+  onNavigate();
+};
 const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
   const {
     primaryImage,
@@ -82,12 +89,43 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
         </header>
 
         {/* HERO VISUAL AREA */}
-        <div className="relative mt-5 rounded-[24px] bg-gradient-to-b from-[#f8fbff] to-[#eef4fa] border border-white overflow-hidden h-[250px] sm:h-[270px] flex items-center justify-center">
-          {/* Ambient glow — single, slow, restrained */}
+<motion.button
+onClick={onNavigate}
+  whileHover={{ scale: 1.01 }}
+  transition={{ duration: 0.3 }}
+  role="link"
+  tabIndex={0}
+  onKeyDown={(e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      onNavigate();
+    }
+  }}
+  className="
+    relative
+    mt-5
+    rounded-[24px]
+    bg-gradient-to-b
+    from-[#f8fbff]
+    to-[#eef4fa]
+    border
+    border-white
+    overflow-hidden
+    h-[250px]
+    sm:h-[270px]
+    flex
+    items-center
+    justify-center
+    cursor-pointer
+  "
+>  
+    {/* Ambient glow — single, slow, restrained */}
           <div className="absolute w-[200px] h-[200px] rounded-full bg-cyan-300/15 blur-[70px] pointer-events-none transition-opacity duration-700 opacity-60 group-hover:opacity-100" />
 
           {/* ASSET CANVAS PACKAGING */}
-          <div className="relative z-20 w-full h-full flex items-center justify-center pb-8 pointer-events-none">
+          {/* ASSET CANVAS PACKAGING */}
+          <div className="relative z-20 w-full h-full flex items-center justify-center pointer-events-none">
+            {/* PRIMARY IMAGE */}
             <motion.img
               whileHover={{ scale: secondaryImage ? 1 : 1.04 }}
               transition={{ duration: 0.5 }}
@@ -95,12 +133,22 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
               alt={product?.name || "Product Image"}
               loading="lazy"
               className={`
-                absolute h-[140px] sm:h-[160px] w-auto max-w-[180px] sm:max-w-[200px] object-contain
-                drop-shadow-[0_25px_45px_rgba(15,23,42,0.16)] transition-all duration-700
-                ${secondaryImage ? "opacity-100 group-hover:opacity-0 scale-100 group-hover:scale-105" : "opacity-100 group-hover:scale-105"}
+                absolute
+                inset-0
+                w-full
+                h-full
+                object-cover
+                transition-all
+                duration-700
+                ${
+                  secondaryImage
+                    ? "opacity-100 group-hover:opacity-0 scale-100 group-hover:scale-105"
+                    : "opacity-100 group-hover:scale-105"
+                }
               `}
             />
 
+            {/* SECONDARY IMAGE */}
             {secondaryImage && (
               <motion.img
                 whileHover={{ scale: 1.04 }}
@@ -109,9 +157,17 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
                 alt={`${product?.name || "Product"} Alternate Detail`}
                 loading="lazy"
                 className="
-                  absolute h-[140px] sm:h-[160px] w-auto max-w-[180px] sm:max-w-[200px] object-contain
-                  drop-shadow-[0_25px_45px_rgba(15,23,42,0.16)] opacity-0 group-hover:opacity-100
-                  scale-95 group-hover:scale-100 transition-all duration-700
+                  absolute
+                  inset-0
+                  w-full
+                  h-full
+                  object-cover
+                  opacity-0
+                  group-hover:opacity-100
+                  scale-95
+                  group-hover:scale-100
+                  transition-all
+                  duration-700
                 "
               />
             )}
@@ -158,12 +214,12 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
               Quick Add
             </motion.button>
           )}
-        </div>
+        </motion.button>
 
         {/* DETAILS CONTAINER */}
         <div className="mt-6 flex flex-col flex-grow">
           {/* RATING SUB-ROW */}
-          <div className="flex items-center gap-2 flex-wrap text-slate-400 font-medium">
+          {/* <div className="flex items-center gap-2 flex-wrap text-slate-400 font-medium">
             <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-full bg-amber-50 border border-amber-100">
               <Star size={11} className="fill-amber-400 text-amber-400" />
               <span className="text-[11px] font-semibold text-amber-700">
@@ -173,10 +229,25 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
             <span className="text-[12px]">
               ({product?.review_count || 0} reviews)
             </span>
-          </div>
+          </div> */}
 
           {/* PRODUCT NAME & IDENTIFICATION */}
-          <h3 className="mt-3 min-h-[52px] text-[#020817] text-[20px] sm:text-[22px] leading-[1.15] font-black tracking-[-1px]">
+          <h3
+            onClick={onNavigate}
+            className="
+              mt-3
+              min-h-[52px]
+              text-[#020817]
+              text-[20px]
+              sm:text-[22px]
+              leading-[1.15]
+              font-black
+              tracking-[-1px]
+              cursor-pointer
+              hover:text-cyan-600
+              transition-colors
+            "
+          >
             {product?.name}
           </h3>
 
@@ -199,11 +270,11 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
                   </span>
                 )}
               </div>
-              <p
+              {/* <p
                 className={`mt-2 text-[11px] font-bold ${isOutOfStock ? "text-rose-600" : "text-emerald-600"}`}
               >
                 {isOutOfStock ? "Out of Stock" : `In Stock (${product?.stock})`}
-              </p>
+              </p> */}
             </div>
 
             <motion.button
@@ -221,7 +292,7 @@ const ProductCard = ({ product, onWishlistToggle, onQuickAdd, onNavigate }) => {
             </motion.button>
           </footer>
         </div>
-      </div>
+    </div>
     </motion.article>
   );
 };
