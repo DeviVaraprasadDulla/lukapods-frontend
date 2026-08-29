@@ -119,7 +119,7 @@ const HeroBackground = () => {
         }}
       />
 
-      {/* FLOATING GLASS SHAPE */}
+      {/* FLOATING GLASS SHAPE
       <motion.div
         animate={{
           y: [0, -14, 0],
@@ -160,10 +160,10 @@ const HeroBackground = () => {
 
           pointer-events-none
         "
-      />
+      /> */}
 
       {/* SECOND SHAPE */}
-      <motion.div
+      {/* <motion.div
         animate={{
           y: [0, 16, 0],
           rotate: [0, -5, 0],
@@ -203,7 +203,7 @@ const HeroBackground = () => {
 
           pointer-events-none
         "
-      />
+      /> */}
 
       {/* OUTER RING */}
       <div

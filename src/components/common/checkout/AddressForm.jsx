@@ -47,6 +47,30 @@ const AddressForm = ({
   "Lakshadweep",
   "Puducherry",
 ];
+const handleCityChange = (e) => {
+  const value = e.target.value;
+
+  // Allow letters and spaces only
+  if (/^[A-Za-z\s]*$/.test(value)) {
+    handleChange(e);
+  }
+};
+
+const handlePinChange = (e) => {
+  const value = e.target.value;
+
+  // Allow numbers only
+  if (/^\d*$/.test(value)) {
+    handleChange(e);
+  }
+};
+const handlePhoneChange = (e) => {
+  const value = e.target.value;
+
+  if (/^\d*$/.test(value)) {
+    handleChange(e);
+  }
+};
   return (
     <div className="mt-8 rounded-2xl border border-gray-200 p-6">
 
@@ -144,14 +168,16 @@ const AddressForm = ({
             {/* City */}
             <div>
                 <input
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                placeholder="City"
-                className={`w-full rounded-xl border px-4 py-3 ${
-                    errors.city ? "border-red-500" : "border-gray-300"
-                }`}
-                />
+                    name="city"
+                    value={formData.city}
+                    onChange={handleCityChange}
+                    placeholder="City"
+                    type="text"
+                    autoComplete="address-level2"
+                    className={`w-full rounded-xl border px-4 py-3 ${
+                        errors.city ? "border-red-500" : "border-gray-300"
+                    }`}
+                    />
 
                 {errors.city && (
                 <p className="mt-1 text-sm text-red-500">
@@ -189,16 +215,19 @@ const AddressForm = ({
             {/* PIN Code */}
             <div>
                 <input
-                name="zip_code"
-                value={formData.zip_code}
-                onChange={handleChange}
-                maxLength={6}
-                inputMode="numeric"
-                placeholder="PIN Code"
-                className={`w-full rounded-xl border px-4 py-3 ${
-                    errors.zip_code ? "border-red-500" : "border-gray-300"
-                }`}
-                />
+                    name="zip_code"
+                    value={formData.zip_code}
+                    onChange={handlePinChange}
+                    maxLength={6}
+                    inputMode="numeric"
+                    type="text"
+                    pattern="[0-9]*"
+                    autoComplete="postal-code"
+                    placeholder="PIN Code"
+                    className={`w-full rounded-xl border px-4 py-3 ${
+                        errors.zip_code ? "border-red-500" : "border-gray-300"
+                    }`}
+                    />
 
                 {errors.zip_code && (
                 <p className="mt-1 text-sm text-red-500">
@@ -210,17 +239,20 @@ const AddressForm = ({
             </div>
 
             <div>
-            <input
+           <input
                 name="phone"
                 value={formData.phone}
-                onChange={handleChange}
+                onChange={handlePhoneChange}
                 maxLength={10}
                 inputMode="numeric"
+                type="text"
+                pattern="[0-9]*"
+                autoComplete="tel"
                 placeholder="Phone Number"
                 className={`w-full rounded-xl border px-4 py-3 ${
-                errors.phone ? "border-red-500" : "border-gray-300"
+                    errors.phone ? "border-red-500" : "border-gray-300"
                 }`}
-            />
+                />
 
             {errors.phone && (
                 <p className="mt-1 text-sm text-red-500">
