@@ -212,17 +212,17 @@ useEffect(() => {
   return () => clearTimeout(timer);
 }, []);
 const videos = [
+    {
+    src: "/videos/lukavideo2.mp4",
+    poster: "/images/lukavid2-poster.png",
+    title: "Premium",
+    subtitle: "Care",
+  },
   {
     src: "/videos/luxury-wash.mp4",
     poster: "/images/lukavid1poster.png",
     title: "Washing",
     subtitle: "Reimagined",
-  },
-  {
-    src: "/videos/lukavideo2.mp4",
-    poster: "/images/lukavid2-poster.png",
-    title: "Premium",
-    subtitle: "Care",
   },
 ];
   const handleMouseMove = (e) => {
