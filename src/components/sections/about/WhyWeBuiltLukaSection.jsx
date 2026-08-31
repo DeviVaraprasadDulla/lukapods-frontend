@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Target, Feather, PenTool } from "lucide-react";
 
 import machineVisual from "@/assets/images/about/machine/machine.jpeg";
-
+import manufacturingVideo from "@/assets/videos/manufacturing.mp4";
 import AboutHeadingBlock from "@/components/common/about/AboutHeadingBlock";
 import AboutFloatingParticles from "@/components/common/about/AboutFloatingParticles";
 
@@ -110,40 +110,544 @@ const WhyWeBuiltLukaSection = () => {
         </div>
 
         {/* Machine Banner */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
+{/* Machine Banner */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="
+    relative
+    mt-16
+    overflow-hidden
+    rounded-[2.5rem]
+    border border-white/70
+    bg-white/45
+    p-4
+    backdrop-blur-2xl
+    shadow-[0_30px_100px_rgba(15,23,42,0.10)]
+    lg:mt-20
+  "
+>
+  <div
+    className="
+      grid
+      items-center
+      gap-8
+      lg:grid-cols-[0.85fr_1.15fr]
+      lg:gap-12
+    "
+  >
+    {/* LEFT CONTENT */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.15 }}
+      viewport={{ once: true }}
+      className="
+        px-5
+        py-8
+        sm:px-8
+        lg:px-10
+        lg:py-12
+      "
+    >
+      {/* Label */}
+      <div
+        className="
+          inline-flex
+          items-center
+          gap-2
+          rounded-full
+          border
+          border-slate-200/80
+          bg-white/80
+          px-4
+          py-2
+          shadow-sm
+        "
+      >
+        <span className="h-2 w-2 rounded-full bg-cyan-400" />
+
+        <span
           className="
-            relative mt-16 overflow-hidden
-            rounded-[2.5rem]
-            border border-white/60
-            bg-white/50
-            p-3
-            backdrop-blur-xl
-            shadow-[0_30px_100px_rgba(15,23,42,0.1)]
-            lg:mt-20
+            text-[10px]
+            font-bold
+            uppercase
+            tracking-[0.28em]
+            text-slate-500
           "
         >
-          <div className="relative overflow-hidden rounded-[2rem]">
-            <img
-              src={machineVisual}
-              alt="Inside Luka's production line"
-              className="
-                h-[320px]
-                w-full
-                object-cover
-                object-[center_65%]
-                sm:h-[420px]
-                lg:h-[560px]
-              "
-            />
+          Built To Perform
+        </span>
+      </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/0 to-transparent" />
-          </div>
-        </motion.div>
+      {/* Heading */}
+      <h2
+        className="
+          mt-6
+          max-w-xl
+          text-4xl
+          font-black
+          leading-[1.05]
+          tracking-[-0.05em]
+          text-slate-950
+          sm:text-5xl
+          lg:text-[54px]
+        "
+      >
+        Precision Behind
+        <span
+          className="
+            block
+            bg-gradient-to-r
+            from-cyan-400
+            via-sky-500
+            to-blue-600
+            bg-clip-text
+            text-transparent
+          "
+        >
+          Every Product.
+        </span>
+      </h2>
 
+      {/* Description */}
+      <p
+        className="
+          mt-6
+          max-w-lg
+          text-base
+          leading-8
+          text-slate-600
+          lg:text-[17px]
+        "
+      >
+        Our production process brings together modern machinery,
+        careful handling, and consistent quality checks to ensure
+        every Luka product meets the standards we set for it.
+      </p>
+
+      <p
+        className="
+          mt-4
+          max-w-lg
+          text-base
+          leading-8
+          text-slate-500
+        "
+      >
+        From the first stage of production to final packaging,
+        every detail matters.
+      </p>
+
+      {/* Small stats / details */}
+      <div className="mt-8 grid grid-cols-2 gap-3">
+        <div
+          className="
+            rounded-2xl
+            border
+            border-white
+            bg-white/70
+            px-4
+            py-4
+            shadow-sm
+          "
+        >
+          <p
+            className="
+              text-[10px]
+              font-bold
+              uppercase
+              tracking-[0.2em]
+              text-slate-400
+            "
+          >
+            Standard
+          </p>
+
+          <p className="mt-1 text-sm font-bold text-slate-800">
+            Consistent Quality
+          </p>
+        </div>
+
+        <div
+          className="
+            rounded-2xl
+            border
+            border-white
+            bg-white/70
+            px-4
+            py-4
+            shadow-sm
+          "
+        >
+          <p
+            className="
+              text-[10px]
+              font-bold
+              uppercase
+              tracking-[0.2em]
+              text-slate-400
+            "
+          >
+            Approach
+          </p>
+
+          <p className="mt-1 text-sm font-bold text-slate-800">
+            Precision First
+          </p>
+        </div>
+      </div>
+    </motion.div>
+
+    {/* RIGHT IMAGE */}
+    <motion.div
+      initial={{ opacity: 0, x: 30, scale: 0.97 }}
+      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      transition={{ duration: 0.9, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="
+        relative
+        min-h-[320px]
+        overflow-hidden
+        rounded-[2rem]
+        bg-slate-900
+        sm:min-h-[420px]
+        lg:min-h-[580px]
+      "
+    >
+      <img
+        src={machineVisual}
+        alt="Inside Luka's production line"
+        className="
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+          object-[center_65%]
+        "
+      />
+
+      {/* Cinematic overlay */}
+      <div
+        className="
+          absolute
+          inset-0
+          bg-gradient-to-tr
+          from-slate-950/45
+          via-transparent
+          to-slate-950/10
+        "
+      />
+
+      {/* Image label */}
+      <div
+        className="
+          absolute
+          left-5
+          top-5
+          rounded-full
+          border
+          border-white/20
+          bg-black/25
+          px-4
+          py-2
+          backdrop-blur-xl
+          sm:left-6
+          sm:top-6
+        "
+      >
+        <span
+          className="
+            text-[10px]
+            font-bold
+            uppercase
+            tracking-[0.25em]
+            text-white
+          "
+        >
+          Our Production
+        </span>
+      </div>
+
+      {/* Bottom caption */}
+      <div
+        className="
+          absolute
+          bottom-5
+          left-5
+          right-5
+          sm:bottom-6
+          sm:left-6
+          sm:right-6
+        "
+      >
+        <div
+          className="
+            rounded-2xl
+            border
+            border-white/15
+            bg-black/25
+            p-4
+            backdrop-blur-xl
+          "
+        >
+          <p
+            className="
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.2em]
+              text-white/60
+            "
+          >
+            Production Line
+          </p>
+
+          <p className="mt-1 text-sm font-medium text-white">
+            Technology working behind the scenes.
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</motion.div>
+
+{/* Manufacturing Showcase */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+  viewport={{ once: true }}
+  className="
+    relative mt-20
+    overflow-hidden
+    rounded-[2.5rem]
+    border border-white/70
+    bg-white/45
+    p-4
+    backdrop-blur-2xl
+    shadow-[0_30px_100px_rgba(15,23,42,0.10)]
+    lg:mt-28
+  "
+>
+  <div className="grid items-center gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12">
+
+    {/* LEFT CONTENT */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, delay: 0.15 }}
+      viewport={{ once: true }}
+      className="px-5 py-8 sm:px-8 lg:px-10 lg:py-12"
+    >
+      {/* Small label */}
+      <div
+        className="
+          inline-flex items-center gap-2
+          rounded-full
+          border border-slate-200/80
+          bg-white/80
+          px-4 py-2
+          shadow-sm
+        "
+      >
+        <span className="h-2 w-2 rounded-full bg-cyan-400" />
+
+        <span
+          className="
+            text-[10px]
+            font-bold
+            uppercase
+            tracking-[0.28em]
+            text-slate-500
+          "
+        >
+          Made With Precision
+        </span>
+      </div>
+
+      {/* Heading */}
+      <h2
+  className="
+    mt-6
+    max-w-xl
+    text-4xl
+    font-black
+    leading-[1.05]
+    tracking-[-0.05em]
+    text-slate-950
+    sm:text-5xl
+    lg:text-[54px]
+  "
+>
+  Where Every
+  <span
+    className="
+      block
+      bg-gradient-to-r
+      from-cyan-400
+      via-sky-500
+      to-blue-600
+      bg-clip-text
+      text-transparent
+    "
+  >
+    Luka Pod Begins.
+  </span>
+</h2>
+
+      {/* Description */}
+      <p
+        className="
+          mt-6
+          max-w-lg
+          text-base
+          leading-8
+          text-slate-600
+          lg:text-[17px]
+        "
+      >
+        Behind every Luka product is a carefully controlled manufacturing
+        process. From formulation and filling to quality checks and final
+        packing, every step is designed with consistency and care.
+      </p>
+
+      {/* Mini details */}
+      <div className="mt-8 flex flex-wrap gap-3">
+        <div
+          className="
+            rounded-2xl
+            border border-white
+            bg-white/70
+            px-4 py-3
+            shadow-sm
+          "
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            Process
+          </p>
+
+          <p className="mt-1 text-sm font-bold text-slate-800">
+            Controlled Production
+          </p>
+        </div>
+
+        <div
+          className="
+            rounded-2xl
+            border border-white
+            bg-white/70
+            px-4 py-3
+            shadow-sm
+          "
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            Focus
+          </p>
+
+          <p className="mt-1 text-sm font-bold text-slate-800">
+            Quality & Consistency
+          </p>
+        </div>
+      </div>
+    </motion.div>
+
+    {/* RIGHT VIDEO */}
+    <motion.div
+      initial={{ opacity: 0, x: 30, scale: 0.97 }}
+      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      transition={{ duration: 0.9, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="
+        relative
+        min-h-[360px]
+        overflow-hidden
+        rounded-[2rem]
+        bg-slate-950
+        sm:min-h-[440px]
+        lg:min-h-[580px]
+      "
+    >
+      <video
+        src={manufacturingVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        className="
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+        "
+      />
+
+      {/* Cinematic overlay */}
+      <div
+        className="
+          absolute inset-0
+          bg-gradient-to-tr
+          from-slate-950/45
+          via-transparent
+          to-slate-950/10
+        "
+      />
+
+      {/* Video label */}
+      <div
+        className="
+          absolute
+          left-5
+          top-5
+          rounded-full
+          border border-white/20
+          bg-black/25
+          px-4 py-2
+          backdrop-blur-xl
+          sm:left-6
+          sm:top-6
+        "
+      >
+        <div className="flex items-center gap-2">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-300 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400" />
+          </span>
+
+          <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white">
+            Inside Luka
+          </span>
+        </div>
+      </div>
+
+      {/* Bottom caption */}
+      <div className="absolute bottom-5 left-5 right-5 sm:bottom-6 sm:left-6 sm:right-6">
+        <div
+          className="
+            rounded-2xl
+            border border-white/15
+            bg-black/25
+            p-4
+            backdrop-blur-xl
+          "
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+            Manufacturing
+          </p>
+
+          <p className="mt-1 text-sm font-medium text-white">
+            Precision at every stage.
+          </p>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</motion.div>
         <p className="mt-6 text-center text-sm font-medium uppercase tracking-[0.24em] text-slate-400">
           Where every Luka pod takes shape.
         </p>
