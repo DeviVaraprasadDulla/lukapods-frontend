@@ -16,7 +16,7 @@ const PageLoader = ({ text = "Preparing your experience..." }) => {
       <div className="text-center">
 
         <img
-          src="/images/logo.png"
+          src="/images/luka-logo.png"
           alt="LukaPods"
           className="mx-auto h-16 w-auto"
         />
